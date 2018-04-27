@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <!--link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" /-->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/timeline.css">
+    <link rel="stylesheet" href="styles/font-awesome.min.css">
+
+</head>
+    <body>
+
+	<div ng-app="ciApp" ng-controller="topCtrl">
+	<md-sidenav class="md-sidenav-left md-whiteframe-z2 nav md-closed" md-component-id="left" ng-cloak>
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">{{'Menu' | translate}}</h1>
+      </md-toolbar>
+      <md-content layout-padding class="menu">
+      	<!-- md-list>
+      		<md-list-item ng-click="navActive()" ng-repeat="menu in nav_menu">
+      			<a ui-sref="{{menu.state}}" class="ilink">{{menu.title | translate}} </a>
+      			<md-divider></md-divider>
+      		</md-list-item>
+      	</md-list -->
+      	
+      	<ul class="docs-menu">
+        <li ng-repeat="section in nav_menu">
+          <a ng-if="section.type === 'link' && !section.hidden" ui-sref="{{section.state}}">
+          <md-button>
+             {{section.title | translate}}
+          </md-button>
+          </a>
+
+          <md-button ng-if="section.type === 'toggle' && !section.hidden" ng-click="section.active = !section.active">
+              <div layout="row">
+              <span flex>{{section.title | translate}}</span>
+              <md-icon ><i class="fa" ng-class="{'fa-angle-up': section.active, 'fa-angle-down': !section.active}"></i></md-icon>
+              </div>
+          </md-button>
+
+          <ul ng-if="section.children" class="menu-toggle-list1" ng-class="{menu_active:section.active, menu_hide: !section.active}" >
+            <li ng-repeat="child in section.children">
+              <a ui-sref="{{child.state}}">
+              <md-button ng-if="child.type === 'link' && !section.hidden">
+              {{child.title | translate}}
+              </md-button>
+              </a>
+            </li>
+          </ul>
+        </li>
+        </ul>
+      
+        <md-button ng-click="closeNav()" class="md-raised md-primary" hide-gt-md>
+          {{'Close' | translate}}
+        </md-button>
+
+      </md-content>
+    </md-sidenav>
+  
+		<div ui-view ng-cloak keepscrollpos></div>
+    </div>
+    
+    <script src="bower_components/Chart.js/Chart.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-material/angular-material.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.min.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload-all.min.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+    
+    <script src="scripts/translate/zh_CN.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/topCtrl.js"></script>
+    <script src="scripts/controllers/loginCtrl.js"></script>
+    <script src="scripts/directives/timeline/timeline.js"></script>
+    <script src="scripts/directives/keepScrollPos.js"></script>
+        <script src="scripts/controllers/homeCtrl.js"></script>
+    <script src="js/video.min.js"></script>
+
+    
+
+
+</body>
+</html>

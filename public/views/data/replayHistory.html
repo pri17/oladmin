@@ -1,0 +1,55 @@
+    <div>
+	<md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+      	<md-button aria-label="Settings" ng-click="openNav()">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>{{'Filesystem' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+  <div class="toolbarheight"></div>
+
+<md-content layout="column" layout-align="" layout-padding>
+
+
+    <md-card class="ol-card" flex>
+            <md-card-header class="ol-card-header">
+             <md-card-avatar>
+                <md-icon md-font-icon="fa fa-align-justify fa-1x"></md-icon>
+             </md-card-avatar>
+              <md-card-header-text>
+                <span class="md-title">{{'Data Activity' | translate}}</span>
+                <span class="md-subhead">status</span>
+              </md-card-header-text>
+            </md-card-header>
+            <md-content>
+                <section ng-repeat="message in messages | orderBy:var_key:1">
+                  <md-subheader class="md-primary" ng-if=false>{{section.date}}</md-subheader>
+                  <md-list layout-padding>
+                    <md-list-item class="md-2-line logitem" style="min-height: 0">
+                        <i class="fa fa-2x" ng-class="message.face"></i>
+                        <div class="md-list-item-text" layout="column" layout-align="start">
+                          <h3>{{message.content}}</h3>
+                          <p>{{message.time}}</p>
+                        </div>
+                    </md-list-item>
+                  </md-list>
+                </section>
+
+            </md-content>
+
+        </md-card>
+    
+    </md-content>  
+
+</div>  
+

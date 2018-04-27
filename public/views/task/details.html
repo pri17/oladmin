@@ -1,0 +1,94 @@
+<div>
+    <md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+      	<a ui-sref="{{taskUrl}}">
+        <md-button aria-label="Go Back">
+         <md-icon md-svg-icon="img/icons/ic_arrow_back_24px.svg"></md-icon>
+        </md-button>
+        </a>
+        <h2>
+          <span>{{'task_details' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    
+  <div class="toolbarheight"></div>
+
+    <md-content>
+        <div class="md-padding" layout-xs="column" layout="row" flex>
+            
+            <md-card class="ol-card" flex>
+            
+            <md-card-header class="ol-card-header">
+                <md-card-avatar>
+                    <md-icon md-font-icon="fa fa-dashboard fa-1x"></md-icon>
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span class="md-title">{{'System Status' | translate}}</span>
+                    <span class="md-subhead">status</span>
+                 </md-card-header-text>
+            </md-card-header>
+            
+            <md-card-content>
+                <div layout="row">
+                    <h2 class="md-title" flex><span class="md-subhead">{{'task_details_createTiem' | translate}}：{{detailsValue[1]}}</span></h2>
+                </div>
+                <md-divider inset =""></md-divider>
+                
+                <div layout="row">
+                    <h2 class="md-title" flex><span class="md-subhead">{{'task_details_taskNumber' | translate}}：{{detailsValue[2]}}</span></h2>
+                </div>
+                <md-divider inset =""></md-divider>
+                
+                <div layout="row">
+                    <h2 class="md-title" flex><span class="md-subhead">{{'task_details_taskType' | translate}}：{{detailsValue[3]}}</span></h2>
+                </div>
+                <md-divider inset =""></md-divider>
+                
+                <div layout="row">
+                    <h2 class="md-title" flex><span class="md-subhead">{{'task_details_driverBox' | translate}}：{{detailsValue[4]}}</span></h2>
+                </div>
+                <md-divider inset =""></md-divider>
+                
+                <div layout="row">
+                    <h2 class="md-title" flex><span class="md-subhead">{{'task_details_driverGrup' | translate}}：{{detailsValue[5]}}</span></h2>
+                </div>
+                <md-divider inset =""></md-divider>
+                
+                <div layout="row">
+                    <h2 class="md-title" flex><span class="md-subhead">{{'task_details_taskstatu' | translate}}：{{detailsValue[6]}}</span></h2>
+                </div>
+                <md-divider inset =""></md-divider>
+                
+                <div layout="row">
+                    <h2 class="md-title" flex><span class="md-subhead">{{'task_details_taskSelect' | translate}}：{{detailsValue[7]}}</span></h2>
+                </div>
+                <md-divider inset =""></md-divider>
+                
+                <div layout="row">
+                    <h2 class="md-title" flex><span class="md-subhead">{{'task_details_bufferInfo' | translate}}：{{detailsValue[9]}}</span></h2>
+                </div>
+                <md-divider inset =""></md-divider>
+                
+                <div layout="column">
+                    <div class="md-title" flex><span class="md-subhead">{{'task_details_time' | translate}}：</span>&nbsp;&nbsp;<span class="md-subhead">{{'task_details_Info' | translate}}：</span></div>
+                    <div layout = "row" ng-repeat="item in detailsValue[10]">
+                        <h2 class="md-title" flex><span class="md-subhead">{{item.timestamp}}</span>&nbsp;&nbsp;<span class="md-subhead">{{item.info}}</span></h2>
+                    </div>
+                </div>
+                
+            </md-card-content>
+            
+        </md-card>
+            
+        </div>
+    </md-content>
+</div>
+

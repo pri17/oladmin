@@ -1,0 +1,16 @@
+<md-dialog aria-label="List dialog" layout-padding flex>
+ <md-dialog-content>
+     <div>Direct URL: {{uri}}</div>
+ 	<video id=example-video width="720" height="480" class="video-js vjs-default-skin" controls style="float:left">
+    </video>
+       
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button ng-click="refresh()" class="md-primary md-raised">
+      {{'Refresh' | translate}}
+    </md-button>
+    <md-button ng-click="closeDialog()" class="md-primary md-raised">
+      {{'Close' | translate}}
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

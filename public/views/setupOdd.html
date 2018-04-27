@@ -1,0 +1,78 @@
+
+<div>
+	<md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+        <md-button aria-label="Settings" ng-click="openNav()">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>{{'Odd Setup' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+  <div class="toolbarheight"></div>
+
+<md-content class="md-padding" layout="column" flex>
+
+<!--System status-->
+    <md-card class="ol-card ol-card-network" flex >
+        
+        <md-card-content>
+            <div layout="row">
+                <h3 flex="20">{{'Device rename' | translate}}: </h3>
+                <div flex-offset="5">
+                <md-button class='md-raised' ng-repeat="(name, newname) in devices" ng-click="remap(name, $event)">
+                	{{name}} => {{newname.substr(2, 2)}}
+                </md-button>
+                </div>
+            </div>
+            <div layout-align="center conter" layout="coloumn">
+            <md-button class="md-raised md-primary">
+            	{{'Reset' | translate}}
+            </md-button>
+            </div>
+            <p>
+                <md-divider></md-divider>
+            </p>
+            <div layout="row">
+            <h3 flex>{{'Lifetime threshold'|translate}}: </h3>
+
+            <md-input-container class="md-block" flex-offset="20">
+            <label>{{'Hours' | translate}}</label>
+            <input  name="c_tagname" ng-model="device.newname" >
+            </md-input-container>
+            
+            </div>
+            
+            <p>
+                <md-divider></md-divider>
+            </p>
+            <div layout="row">
+            <h3 flex>{{'Burn speed'|translate}}: </h3>
+
+            <md-input-container class="md-block" flex-offset="20">
+            <label>{{'X' | translate}}</label>
+            <input  name="c_tagname" ng-model="device.newname" >
+            </md-input-container>
+            
+            </div>
+
+        </md-card-content>
+        
+        
+    </md-card>
+  
+  </md-content>  
+  
+  <md-content layout="row" layout-align="center center">
+        <md-button class="md-primary md-raised" ng-click="submitAction()">{{'Save' | translate}}</md-button>
+  </md-content>
+  
+</div>  

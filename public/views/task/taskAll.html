@@ -1,0 +1,76 @@
+<div>
+    <md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+        <md-button aria-label="Settings" ng-click="openNav()">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>{{'task_all' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More" ng-click="outLogin()">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    
+  <div class="toolbarheight"></div>
+    
+    <md-content>
+        <div class="md-padding" layout-xs="column" layout="row" flex>
+        <md-card class="ol-card" flex>
+            
+            <md-card-header class="ol-card-header">
+                <md-card-avatar>
+                    <md-icon md-font-icon="fa fa-dashboard fa-1x"></md-icon>
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span class="md-title">{{'System Status' | translate}}</span>
+                    <span class="md-subhead">status</span>
+                 </md-card-header-text>
+            </md-card-header>
+            
+            <md-card-content>
+                <div layout="row">
+                    <h2 class="md-title" flex><a ui-sref="task.all" class="ilink"><span class="md-subhead">{{'over_view' | translate}}：{{task.all}}</span></a></h2>
+                </div>
+                <md-divider inset =""></md-divider>
+                
+                <div layout="row">
+                    <h2 class="md-title" flex><a ui-sref="task.complete" class="ilink"><span class="md-subhead">{{'task_complete' | translate}}：{{task.complete}}</span></a></h2>
+                </div>
+                <md-divider inset =""></md-divider>
+                
+                <!--div layout="row">
+                    <h2 class="md-title" flex><a ui-sref="task.completeError" class="ilink"><span class="md-subhead">{{'task_complateError' | translate}}：{{task.completeError}}</span></a></h2>
+                </div>
+                <md-divider inset =""></md-divider-->
+                
+                <div layout="row">
+                    <h2 class="md-title" flex><a ui-sref="task.taskError" class="ilink"><span class="md-subhead">{{'task_error' | translate}}：{{task.error}}</span></a></h2>
+                </div>
+                <md-divider inset =""></md-divider>
+                
+                <div layout="row">
+                    <h2 class="md-title" flex><a ui-sref="task.new" class="ilink"><span class="md-subhead">{{'task_new' | translate}}：{{task.new}}</span></a></h2>
+                </div>
+                <md-divider inset =""></md-divider>
+                
+                <!--div layout="row">
+                    <h2 class="md-title" flex><a ui-sref="task.running" class="ilink"><span class="md-subhead">{{'task_running' | translate}}：{{task.running}}</span></a></h2>
+                </div>
+                <md-divider inset =""></md-divider-->
+                
+                <div layout="row">
+                    <h2 class="md-title" flex><a ui-sref="task.wait" class="ilink"><span class="md-subhead">{{'task_wait' | translate}}：{{task.wait}}</span></a></h2>
+                </div>
+                <md-divider inset =""></md-divider>
+            </md-card-content>
+            
+        </md-card>
+        </div>
+    </md-content>
+</div>

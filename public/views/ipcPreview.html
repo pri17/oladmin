@@ -1,0 +1,103 @@
+
+<div>
+	<md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+      	<md-button aria-label="Settings" ng-click="openNav()">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>{{'Ipc Preview' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+  <div class="toolbarheight"></div>
+
+<md-content layout="row" layout-align="" layout-padding>	
+  <div layout-align="center center" flex>
+    <div ng-repeat="item in ipcs_preview" style="float:left" layout-padding flex>
+        <div layout="row">
+            <div flex>IPC: {{item.ip}} / {{item.nickname}}</div>
+            <div ng-click="del(item)">
+          	{{'Close' | translate}}
+            </div>
+        </div>
+ 	    <video ng-attr-id="{{'ipc-video-'+item.ip}}" class="video-js vjs-default-skin" controls>
+        </video>
+    </div>
+ 
+  </div>
+  <div flex=20>
+      <md-button ng-click="refreshPreview()" class="md-raised md-primary" flex>
+          	{{'Refresh previews' | translate}}
+      </md-button>
+	<md-list>
+		<md-subheader class="md-no-sticky">{{'Ipc list' | translate}}</md-subheader>
+		
+		<md-list-item>
+		    <div layout="row" layout-align="center center" flex="80">
+		 	<div ng-click="orderByItem='ip';reverse_flag=!reverse_flag" flex>{{'ip' | translate}} {{'nickname' | translate}}</div>
+		    </div>
+		    <div flex></div>
+		</md-list-item>
+		<md-divider></md-divider>
+
+		<md-list-item ng-repeat="ipc in ipcs | orderBy:orderByItem:reverse_flag |limitTo:itemsPerPage:(currentPage - 1)*itemsPerPage">
+		    <!--md-checkbox ng-model="ipc.selected" ></md-checkbox-->
+		    <div layout="row" layout-align="center center" flex="80" ng-click="preview(ipc)">
+		 	<div flex ng-if="ipc.nickname==''">{{ipc.ip}}</div>
+		 	<div flex ng-if="ipc.nickname!=''">{{ipc.nickname}}</div>
+		    </div>
+		    <md-icon class="md-secondary" ng-click="add(ipc)" aria-label="Del">
+		        <i class="fa fa-plus fa-2x" ng-if="ipc.added != true"></i>
+		        <i class="fa fa-check-square-o fa-2x" ng-if="ipc.added == true"></i>
+		    </md-icon>
+		</md-list-item>
+	</md-list>	
+	
+	<!-- pagination -->
+   <md-divider></md-divider>
+   <div layout="row" layout-align="start start">
+   <md-button ng-click="currentPage=currentPage-1" ng-disabled="currentPage<=1" flex="10" layout-align="start center">
+   <i class="fa fa-arrow-circle-left" style="font-size: xx-large"></i>
+   </md-button>
+	<md-input-container flex="10">
+        <label>{{'Page' | translate}}</label>
+        <md-select ng-model="currentPage">
+          <md-option ng-repeat="page in pageNumOptions" value="{{page}}">
+            {{page}}
+          </md-option>
+        </md-select>
+    </md-input-container>
+    <md-button ng-click="currentPage=currentPage+1" ng-disabled="currentPage>=totalPage" flex="10">
+    <i class="fa fa-arrow-circle-right" style="font-size: xx-large"></i>
+    </md-button>
+
+    <md-input-container>
+        <label>{{'Items/page' | translate}}</label>
+        <md-select ng-model="itemsPerPage">
+          <md-option ng-repeat="item in itemsPerPageOptions" value="{{item}}">
+            {{item}}
+          </md-option>
+        </md-select>
+    </md-input-container>
+   </div> 
+   
+   </div>
+  </md-content>  
+
+</div>  
+
+<style>
+    .video-js {
+    height: 225px !important;
+    width: 400px !important;
+    padding-top: 62.5%; // or find aspect ratio of video, e.g. 16:9 and do calc(B/(A/100) = aspectRatio -> calc(9/(16/100) = 56.25%
+}
+</style>

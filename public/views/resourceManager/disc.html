@@ -1,0 +1,42 @@
+<div>
+    <md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+        <md-button aria-label="Settings" ng-click="openNav()">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>{{'Storage' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    
+  <div class="toolbarheight"></div>
+    
+    <md-content>
+        <md-card md-theme="">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{'Disc' | translate}}</span>
+                    <span class="md-subhead">{{'CD_Library_total_capacity' | translate}}{{libTVolume}}</span>
+                    <span class="md-subhead">{{'CD_library_already_used_capacity' | translate}}{{libUVolume}}</span>
+                    <span class="md-subhead">{{'CD_library_usage' | translate}}{{libRadio}}</span>
+                    <span>{{'CD_type' | translate}}{{libRadio}}{{discType}}</span>
+                    <span>{{numberOfDisc}}</span>
+                    <span>{{discDetail}}</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                    <div class="md-media-lg card-media">
+                        <img ng-src="{{image}}">
+                    </div>
+                </md-card-title-media>
+            </md-card-title>
+        </md-card>
+    </md-content>
+</div>

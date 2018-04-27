@@ -1,0 +1,120 @@
+<div>
+	<md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+      	<md-button aria-label="Settings" ng-click="openNav()">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>{{'Playback' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+  <div class="toolbarheight"></div>
+
+<md-content layout="column" layout-align="" layout-padding>	
+  <div layout="row" layout-align="center center">
+      
+      <md-input-container class="md-block" flex="15">
+          <label>{{'ip' | translate}}</label>
+          <md-select ng-model="ip">
+              <md-option ng-repeat="index in ipcs" value='{{index.ip}}'>{{index.nickname}}</md-option>
+          </md-select>
+      </md-input-container>
+      <md-datepicker ng-model="dateTime" md-placeholder="{{'date'|translate}}" ng-current-view="year" ng-required="true"></md-datepicker>
+      
+      
+      
+      <!-- md-input-container class="md-block" flex>
+        <label>{{'filename' | translate}}</label>
+        <input  required md-no-asterisk name="name" ng-model="keyword">
+      </md-input-container -->
+      <md-button ng-click="getVideo()" class="md-raised" flex="20">
+          	{{'Search' | translate}}
+      </md-button>
+  </div>
+    
+    <md-divider></md-divider>
+    <div layout="row" layout-align="center center">
+        <md-input-container>
+            <label>{{'Start time' | translate}}</label>
+            <input ng-model="startTime" ng-pattern="/^(0?[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$/" required>
+            
+        </md-input-container>
+        
+        <md-input-container>
+            <label>{{'End time' | translate}}</label>
+            <input ng-model="endTime" ng-pattern="/^(0?[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$/" required>
+        </md-input-container>
+        <span>日期格式：00:00:00</span>
+        
+        <md-button class="md-raised md-primary" ng-click="multipleVideo($event)">{{'play' | translate}}</md-button>
+    </div>
+    
+	<md-list>
+		<md-subheader class="md-no-sticky">{{'Path' | translate}}: {{path}}</md-subheader>
+		
+		<md-list-item>
+		    <!--md-checkbox ng-model="checkin.selectedAll" ></md-checkbox-->
+		    <div layout="row" layout-align="center center" flex>
+		    	<div flex="5"> # </div>
+		 	<div ng-click="orderByItem='filename';reverse_flag=!reverse_flag" flex=70>{{'filename' | translate}}</div>
+		 	<div ng-click="orderByItem='size';reverse_flag=!reverse_flag" flex=10>{{'size' | translate}}</div>
+		 	<div ng-click="orderByItem='mtime';reverse_flag=!reverse_flag" flex=15>{{'mtime' | translate}}</div>
+		 	<!-- div ng-click="orderByItem='nlink';reverse_flag=!reverse_flag" flex=5>{{'burned' | translate}}</div -->
+		    </div>
+		</md-list-item>
+		<md-divider></md-divider>
+
+		<md-list-item ng-repeat="item in items | orderBy:orderByItem:reverse_flag |limitTo:itemsPerPage:(currentPage - 1)*itemsPerPage" ng-click="preview(item, $event, 'singe')">
+		    <!--md-checkbox ng-model="checkin.selected" ></md-checkbox-->
+		    <div layout="row" layout-align="center center" flex>
+		    <div flex="1">{{$index + (currentPage - 1)*itemsPerPage}} </div>
+		    <i class="fa fa-2x" ng-class="item.face" layout-padding> </i>
+		 	<div flex=70>
+		 	     {{item.filename}}
+		 	</div>
+		 	<div flex=10><span ng-if="!item.isDir">{{capacityToString(item.size)}}</span></div>
+		 	<div flex=15>{{item.filetime}}</div>
+		 	<!-- div flex=5><div ng-if="!item.isDir"><span ng-if="item.nlink==2">{{'yes' | translate}}</span> <span ng-if="item.nlink!=2">{{'no' | translate}}</span></div></div -->
+		    </div>
+		    
+		</md-list-item>
+	</md-list>	
+	
+	<!-- pagination -->
+   <md-divider></md-divider>
+  <div layout="row" layout-align="start center">
+   <md-button ng-click="currentPage=currentPage-1" ng-disabled="currentPage<=1" flex="10" layout-align="start center">
+   <i class="fa fa-arrow-circle-left" style="font-size: xx-large"></i>
+   </md-button>
+	<md-input-container >
+        <label>{{'Page' | translate}}</label>
+        <md-select ng-model="currentPage">
+          <md-option ng-repeat="page in pageNumOptions" value="{{page}}">
+            {{page}}
+          </md-option>
+        </md-select>
+    </md-input-container>
+    <md-button ng-click="currentPage=currentPage+1" ng-disabled="currentPage>=totalPage">
+    <i class="fa fa-arrow-circle-right" style="font-size: xx-large"></i>
+    </md-button>
+    <div flex></div>
+    <md-input-container>
+        <label>{{'Items/page' | translate}}</label>
+        <md-select ng-model="itemsPerPage">
+          <md-option ng-repeat="item in itemsPerPageOptions" value="{{item}}">
+            {{item}}
+          </md-option>
+        </md-select>
+    </md-input-container>
+   </div>
+  </md-content>  
+
+</div>  

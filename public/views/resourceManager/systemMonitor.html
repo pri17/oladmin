@@ -1,0 +1,197 @@
+<style >
+    .bottom_magezin{
+        margin-top: 30px;
+    }
+   #tool_red{
+        background-color:  #e02222;
+        height: 40px;
+    }
+    #tool_purple{
+        background-color:  #852b99;
+        height: 40px;
+    }
+    #tool_blue{
+        background-color:   #4b8df8 !important;
+        height: 40px;
+    }
+    #tool_yellow{
+        background-color:   #ffb848 !important;
+        height: 40px;
+    }
+    #tool_green{
+        background-color:   #35aa47 !important;
+        height: 40px;
+    }
+    .button_green{
+        color: white;
+        text-shadow: none;
+        background-color: #35aa47;
+    }
+</style>
+<div>
+    <md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+        <md-button aria-label="Settings" ng-click="openNav()">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>{{'Performance' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    
+    <div class="toolbarheight"></div>
+    
+    <md-content layout='column' layout-align=''>
+        <div flex-xs="" flex-gt-xs="50" layout="column">
+           
+            <!-- 水平校准 -->
+            <md-card md-theme="" id="md-card_blue"  style="border: 1px solid #e02222">
+                <md-toolbar class="md-hue-2" id="tool_blue">
+                     <div class="md-toolbar-tools" >
+                         <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+                                <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+                         </md-button>
+                         <h2><span>{{'CPU_monitor' | translate}}</span></h2>
+                         <span flex=""></span>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="showAndHide('blue')">
+                             <md-icon md-svg-icon="img/icons/ic_chevron_right_24px.svg" style="transform: rotate(90deg);"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="">
+                             <md-icon md-svg-icon="img/icons/ic_build_24px.svg"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="">
+                             <md-icon md-svg-icon="img/icons/ic_refresh_24px.svg"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="showClose('blue')">
+                             <md-icon md-svg-icon="img/icons/ic_close_24px.svg"></md-icon>
+                         </md-button>
+                     </div>
+                 </md-toolbar>
+                <md-card-title id="card_red" style="display:block">
+                    <md-card-title-text>
+                        <!--<h4><span>{{'drivcerBox' | translate}}{{boxNo}}{{'hAdjustTitle' | translate}}</span></h4>-->
+                        <md-list flex="">
+                            
+                                <canvas width="851" height="212" id="hero-bar" class="chart chart-line ng-isolate-scope" chart-data="data" 
+                                        chart-options="options" chart-labels="labels" style="display: block; width: 851px; height: 212px;"></canvas>
+                            
+                        </md-list>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+            
+            <!-- Disc_cartridge -->
+            <md-card md-theme="" id="md-card_yellow"  style="border: 1px solid #852b99">
+                <md-toolbar class="md-hue-2" id="tool_yellow">
+                     <div class="md-toolbar-tools" >
+                         <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+                                <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+                         </md-button>
+                         <h2><span>{{'memory_monitor' | translate}}</span></h2>
+                         <span flex=""></span>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="showAndHide('yellow')">
+                             <md-icon md-svg-icon="img/icons/ic_chevron_right_24px.svg" style="transform: rotate(90deg);"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="">
+                             <md-icon md-svg-icon="img/icons/ic_build_24px.svg"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="">
+                             <md-icon md-svg-icon="img/icons/ic_refresh_24px.svg"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="showClose('yellow')">
+                             <md-icon md-svg-icon="img/icons/ic_close_24px.svg"></md-icon>
+                         </md-button>
+                     </div>
+                 </md-toolbar>
+                <md-card-title id="card_purple" style="display:block">
+                    <md-card-title-text>
+                        <!--<h4><span>{{'drivcerBox' | translate}}{{boxNo}}{{'VerticalAlignment' | translate}}</span></h4>-->
+                        <md-list flex="">
+                            
+                           <canvas width="851" height="212" id="hero-bar" class="chart chart-line ng-isolate-scope" chart-data="data_memory" 
+                                        chart-options="options" chart-labels="labels_memory" style="display: block; width: 851px; height: 212px;"></canvas>
+                            
+                        </md-list>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+            
+            <!-- Disc_cartridge -->
+            <md-card md-theme="" id="md-card_purple"  style="border: 1px solid #4b8df8;">
+                <md-toolbar class="md-hue-2" id="tool_purple">
+                    <div class="md-toolbar-tools">
+                         <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+                                <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+                         </md-button>
+                         <h2><span>{{'disk_Monitor' | translate}}</span></h2>
+                         <span flex=""></span>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="showAndHide('purple')">
+                             <md-icon md-svg-icon="img/icons/ic_chevron_right_24px.svg" style="transform: rotate(90deg);"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="">
+                             <md-icon md-svg-icon="img/icons/ic_build_24px.svg"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="">
+                             <md-icon md-svg-icon="img/icons/ic_refresh_24px.svg"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="showClose('purple')">
+                             <md-icon md-svg-icon="img/icons/ic_close_24px.svg"></md-icon>
+                         </md-button>
+                     </div>
+                 </md-toolbar>
+                <md-card-title id="card_blue" style="display:block">
+                    <md-card-title-text>
+                        <md-list flex="">
+                            
+                            <canvas width="851" height="212" id="hero-bar" class="chart chart-line ng-isolate-scope" chart-data="data_disk" 
+                                        chart-options="options" chart-labels="labels_disk" style="display: block; width: 851px; height: 212px;"></canvas>
+                            
+            </md-card>
+            
+            <!-- Disc_cartridge -->
+            <md-card md-theme="" id="md-card_green"  style="border: 1px solid #4b8df8;">
+                <md-toolbar class="md-hue-2" id="tool_green">
+                    <div class="md-toolbar-tools">
+                         <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+                                <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+                         </md-button>
+                         <h2><span>{{'network_monitoring' | translate}}</span></h2>
+                         <span flex=""></span>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="showAndHide('green')">
+                             <md-icon md-svg-icon="img/icons/ic_chevron_right_24px.svg" style="transform: rotate(90deg);"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="">
+                             <md-icon md-svg-icon="img/icons/ic_build_24px.svg"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="">
+                             <md-icon md-svg-icon="img/icons/ic_refresh_24px.svg"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="showClose('green')">
+                             <md-icon md-svg-icon="img/icons/ic_close_24px.svg"></md-icon>
+                         </md-button>
+                     </div>
+                 </md-toolbar>
+                <md-card-title id="card_blue" style="display:block">
+                    <md-card-title-text>
+                        <md-list flex="">
+                            
+                            <canvas width="851" height="212" id="hero-bar" class="chart chart-line ng-isolate-scope" chart-data="data_network" 
+                                        chart-options="options" chart-labels="labels_network" style="display: block; width: 851px; height: 212px;"></canvas>
+                            
+                        </md-list>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+            
+            
+        </div>
+    </md-content>
+</div>

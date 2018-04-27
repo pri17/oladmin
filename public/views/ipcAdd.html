@@ -1,0 +1,62 @@
+
+<div>
+	<md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+      	<a ui-sref="ipc.manage">
+        <md-button aria-label="Go Back">
+         <md-icon md-svg-icon="img/icons/ic_arrow_back_24px.svg"></md-icon>
+        </md-button>
+        </a>
+        <h2>
+          <span>{{'Ipc Add' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+  <div class="toolbarheight"></div>
+  
+  <md-content layout-padding layout="row" layout-align="center center">	
+	
+	<div layout="column" flex=80>
+	    <md-input-container class="md-block">
+        <label>{{'ip' | translate}}</label>
+        <input required name="c_ip" ng-model="ipc.ip" 
+        >
+        </md-input-container>
+      	<md-input-container class="md-block">
+        <label>{{'uri' | translate}}</label>
+        <input required name="c_uri" ng-model="ipc.uri"
+        >
+        </md-input-container>
+      	<md-input-container class="md-block">
+        <label>{{'nickname' | translate}}</label>
+        <input name="c_nickname" ng-model="ipc.nickname" 
+        >
+        </md-input-container>
+      	<md-input-container class="md-block">
+        <label>{{'class' | translate}}</label>
+        <input name="c_class" ng-model="ipc.class" 
+        >
+        </md-input-container>
+	
+      
+      <div layout="row" layout-align="center center">
+      <md-button ng-click="addAction()" class="md-raised md-primary">
+          	{{'Submit' | translate}}
+      </md-button>
+      <a ui-sref="ipc.manage">
+      <md-button class=" md-primary">
+          	{{'Return' | translate}}
+      </md-button>
+      </a>
+      </div>
+      </div>
+    
+  </md-content>
+</div>  

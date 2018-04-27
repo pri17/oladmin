@@ -1,0 +1,78 @@
+<div>
+    <md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+        <md-button aria-label="Settings" ng-click="openNav()">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>{{'Magazine' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    
+    <div class="toolbarheight"></div>
+    
+    <md-content layout="column" layout-align="">
+        <div layout="row" layout-align="center center">
+            <md-input-container class="md-block" flex>
+                <label>{{'Keyword' | translate}}</label>
+                <input md-maxlength="20" required md-no-asterisk name="name" ng-model="keyword">
+            </md-input-container>
+            <md-button ng-click="search()" class="md-raised" flex="20">{{'Search' | translate}}</md-button>
+        </div>
+        <md-list>
+            <md-subheader class="md-no-sticky">{{'driverInfo' | translate}}</md-subheader>
+            <md-list-item>
+                <div layout="row" layout-align="center center" flex="80">
+                    <div flex="10">{{'driverNo' | translate}}</div>
+                    <div flex>{{'driverUnknow' | translate}}</div>
+                    <div flex>{{'driverTVolume' | translate}}</div>
+                    <div flex>{{'driverStatus' | translate}}</div>
+                </div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item ng-repeat="item in detailValue | orderBy:orderByItem:reverse_flag |limitTo:itemsPerPage:(currentPage - 1)*itemsPerPage">
+                <div layout="row" layout-align="center center" flex="80">
+                    <div flex="10">{{item.no}}</div>
+                    <div flex>{{item.unknow}}</div>
+                    <div flex>{{item.uVolume}}</div>
+                    <div flex>{{item.status | translate}}</div>
+                </div>
+            </md-list-item>
+        </md-list>
+        <md-divider></md-divider>
+        <div layout="row" layout-align="start center">
+            <md-button ng-click="currentPage=currentPage-1" ng-disabled="currentPage<=1" flex="10" layout-align="start center">
+                <i class="fa fa-arrow-circle-left" style="font-size: xx-large"></i>
+            </md-button>
+                 <md-input-container >
+                 <label>{{'Page' | translate}}</label>
+                 <md-select ng-model="currentPage">
+                   <md-option ng-repeat="page in pageNumOptions" value="{{page}}">
+                     {{page}}
+                   </md-option>
+                 </md-select>
+             </md-input-container>
+             <md-button ng-click="currentPage=currentPage+1" ng-disabled="currentPage>=totalPage">
+                <i class="fa fa-arrow-circle-right" style="font-size: xx-large"></i>
+             </md-button>
+             <div flex></div>
+             <md-input-container>
+                 <label>{{'Items/page' | translate}}</label>
+                 <md-select ng-model="itemsPerPage">
+                   <md-option ng-repeat="item in itemsPerPageOptions" value="{{item}}">
+                     {{item}}
+                   </md-option>
+                 </md-select>
+             </md-input-container>
+        </div> 
+    </ms-content>
+    
+</div>

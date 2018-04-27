@@ -1,0 +1,316 @@
+<div ng-cloak class="home">
+    <md-toolbar class="toolbarfix" md-whiteframe="3">
+      <div class="md-toolbar-tools">
+        <md-button aria-label="Settings" ng-click="openNav()">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>{{'Home' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <h1>
+          {{ currentTime | date:'yyyy-M-d H:mm:ss'}}
+          </h1>
+        <!--md-button class="md-icon-button" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+        </md-button-->
+        <md-button class="md-icon-button" aria-label="More">
+          <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+  <div class="toolbarheight"></div>
+  
+  <div layout="column">
+  
+  <!--div class="logo" md-whiteframe="8" layout-xs="column" layout="row">
+      <div class="panel" ng-class="{'flip': detail}" ng-mouseup="detail=!detail" ng-init="detail=0">
+      <div class="front" md-whiteframe="8">
+          Front
+      </div>
+      <div class="back" md-whiteframe="8">
+          Back
+      </div>
+      </div>
+      
+      <div>
+          
+      </div>
+      
+  </div-->
+  
+  <div layout-xs="column" layout="row">
+      <div class="panel outline" ng-class="{'flip': detail}" ng-mouseup="detail=!detail" ng-init="detail=0">
+          <div class="front " md-whiteframe="8" flex=100 layout="row">
+            <i class="fa fa-2x fa-circle-o ol-system-normal" ng-class=""></i>
+            <div id="storage_percentage" layout="column" layout-align="center center" flex>
+                <span>{{ fsStatus.mode | translate}} </span>
+                <span class="label">{{'System Status' | translate}}</span>
+            </div>
+            </div>
+          <div class="back" md-whiteframe="8" flex=100 layout="row">
+            <div id="storage_detail" layout="column" flex=100>
+                <div layout="row" flex=50 layout-align="start center">
+                    <span flex>{{'Uptime' | translate}} :</span>
+                    <span>50 Hours</span>
+                </div>
+                <md-divider></md-divider>
+                <div layout="row" flex=50 layout-align="start center">
+                    <span flex>{{'Action to do' | translate}} :</span>
+                    <span>None</span>
+                </div>
+                
+            </div>
+          </div>
+      </div>
+      
+      <div class="panel outline" ng-class="{'flip': detail1}" ng-mouseup="detail1=!detail1" ng-init="detail1=0">
+          <div class="front" md-whiteframe="8" flex=100 layout="row">
+            <canvas id="storage_pie" class="chart chart-doughnut" chart-data="capacity.data" chart-labels="capacity.labels" chart-options="capacity.options">
+            </canvas>
+            <div id="storage_percentage" layout="column" layout-align="center center" flex>
+                <div layout="row" layout_align="center center">
+                    <span>{{(capacity.data[0] * 100 / (capacity.data[0] + capacity.data[1])).toFixed(1)}}% </span><span class="label"> &nbsp; {{'Used' | translate}}</span>
+                </div>
+                <div layout="row" layout_align="center center">
+                    <span class="label">{{capacityToString(fsStatus.total_blocks)}}</span><span class="label"> &nbsp; {{'Capacity' | translate}}</span>
+                </div>
+            </div>
+          </div>
+          <div class="back" md-whiteframe="8" flex=100 layout="row">
+            <div id="storage_detail" layout="column" flex=100>
+                <div layout="row" flex=50 layout-align="start center">
+                    <span flex>{{'Disc used' | translate}} :</span>
+                    <span>{{fsStatus.discGroupToBurn*12}} / 6120</span>
+                </div>
+                <md-divider></md-divider>
+                <div layout="row" flex=50 layout-align="start center">
+                    <span flex>{{'Buffer used' | translate}} :</span>
+                    <span>30%</span>
+                </div>
+                
+            </div>
+          </div>
+      </div>
+      
+  </div>
+  
+  <div class="md-padding" layout-xs="column" layout="row" flex>
+
+<!--System status-->
+    <md-card class="ol-card" flex>
+        <md-card-header class="ol-card-header">
+         <md-card-avatar>
+            <md-icon md-font-icon="fa fa-dashboard fa-1x"></md-icon>
+         </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title">{{'System Activities' | translate}}</span>
+            <span class="md-subhead">status</span>
+          </md-card-header-text>
+        </md-card-header>
+        <md-card-content>
+            <!--div layout="row">
+            <h2 class="md-title" flex>{{'System current status' | translate}} :</h2>
+            <h2 class="md-title">{{'Normal' | translate}}</h2>
+            </div>
+            <p><md-divider inset></md-divider></p-->
+            
+            <div layout="row">
+            <h2 class="md-title" flex>{{'Capacity to next burn' | translate}} :</h2>
+            <h2 class="md-title">{{fsStatus.dataAmountToBurn + 'MB'}}</h2>
+            </div>
+            
+            <p><md-divider inset></md-divider></p>
+            
+            <div layout="row">
+            <h2 class="md-title" flex>{{'Disc group for next burn' | translate}} :</h2>
+            <h2 class="md-title">{{fsStatus.discGroupToBurn}}</h2>
+            </div>
+            <p><md-divider inset></md-divider></p>
+            
+            <div layout="row">
+            <h2 class="md-title" flex>{{'Current task' | translate}} :</h2>
+            <h2 class="md-title">{{fsStatus.currentTask | translate}}</h2>
+            </div>
+            <p>{{'Task progress' | translate}} :</p>
+            <md-progress-linear md-mode="determinate" value="{{fsStatus.taskProgress}}"></md-progress-linear>
+            <p><md-divider inset></md-divider></p>
+            
+            <div layout="row">
+            <h2 class="md-title" flex> {{'Demo mode' | translate}}: </h2>
+            <md-switch ng-model="demo_mode" aria-label="Switch 1"> <span ng-if="demo_mode">开</span> <span ng-if="!demo_mode">关</span>
+            </md-switch>
+            </div>
+            <p><md-divider inset></md-divider></p>
+            
+            <div layout="row">
+            <h2 class="md-title" flex> {{'Maintain mode' | translate}}: </h2>
+            <md-switch ng-model="maintain_mode" aria-label="Switch 2"> <span ng-if="maintain_mode">开</span> <span ng-if="!maintain_mode">关</span>
+            </md-switch>
+            </div>
+            
+            <p><md-divider inset></md-divider></p>
+            
+            <div layout="row">
+            <h2 class="md-title" flex> {{'Nocache mode' | translate}}: </h2>
+            <md-switch ng-model="nocache_mode" aria-label="Switch 3"> <span ng-if="nocache_mode">开</span> <span ng-if="!nocache_mode">关</span>
+            </md-switch>
+            </div>
+
+            
+        </md-card-content>
+        
+    </md-card>
+    
+
+<!--Storage status-->
+    <!--md-card class="ol-card" flex>
+        <md-card-header class="ol-card-header">
+         <md-card-avatar>
+            <md-icon md-font-icon="fa fa-database fa-1x"></md-icon>
+         </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title">{{'Storage Status' | translate}}</span>
+            <span class="md-subhead">status</span>
+          </md-card-header-text>
+        </md-card-header>
+        <md-card-content>
+            <div layout="row">
+            <h2 class="md-title" flex>{{'Capacity used' | translate}} :</h2>
+            <h2 class="md-title">321GB / 600TB</h2>
+            </div>
+            <canvas id="pie" class="chart chart-doughnut" chart-data="capacity.data" chart-labels="capacity.labels">
+            </canvas>
+
+            <p><md-divider inset></md-divider></p>
+            
+            <div layout="row">
+            <h2 class="md-title" flex>{{'Buffer used' | translate}} :</h2>
+            <h2 class="md-title">321GB / 600TB</h2>
+            </div>
+            <p><md-divider inset></md-divider></p>
+            
+            <div layout="row">
+            <h2 class="md-title" flex>{{'Disc used' | translate}} :</h2>
+            <h2 class="md-title">120 / 6000</h2>
+            </div>
+            <p><md-divider inset></md-divider></p>
+            
+            <div layout="row">
+            <h2 class="md-title" flex>{{'Burn error' | translate}} :</h2>
+            <h2 class="md-title"> 0 </h2>
+            </div>
+            <p><md-divider inset></md-divider></p>
+            
+            <div layout="row">
+            <h2 class="md-title" flex>{{'Drive duration' | translate}} :</h2>
+            <h2 class="md-title"> 0 </h2>
+            </div>
+            
+        
+            
+        </md-card-content>
+        
+    </md-card-->
+    
+<!--Data activity-->
+    <md-card class="ol-card" flex>
+        <md-card-header class="ol-card-header">
+         <md-card-avatar>
+            <md-icon md-font-icon="fa fa-align-justify fa-1x"></md-icon>
+         </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title">{{'Data Activity' | translate}}</span>
+            <span class="md-subhead">status</span>
+          </md-card-header-text>
+        </md-card-header>
+        <md-content>
+            <section ng-repeat="message in messages | orderBy:var_key:1">
+              <md-subheader class="md-primary" ng-if=false>{{section.date}}</md-subheader>
+              <md-list layout-padding>
+                <md-list-item class="md-2-line logitem" style="min-height: 0">
+                    <i class="fa fa-2x" ng-class="message.face"></i>
+                    <div class="md-list-item-text" layout="column" layout-align="start">
+                      <h3>{{message.content}}</h3>
+                      <p>{{message.time}}</p>
+                    </div>
+                </md-list-item>
+              </md-list>
+            </section>
+            
+        </md-content>
+
+    </md-card>
+    
+<!--Event List-->
+    <div class="panel event_card" ng-class="{'flip': show_lib}" ng-mouseup="show_lib=!show_lib" ng-init="show_lib=1" flex>
+    <div class="front">
+    <md-card class="ol-card" flex>
+        <md-card-header class="ol-card-header">
+         <md-card-avatar>
+            <md-icon md-font-icon="fa fa-bell fa-1x"></md-icon>
+         </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title">{{'Event List' | translate}}</span>
+            <span class="md-subhead">status</span>
+          </md-card-header-text>
+        </md-card-header>
+        <md-card-content>
+               <md-list layout-padding>
+                <md-list-item class="md-3-line" ng-repeat="event in events | orderBy:var_key:1" style="min-height: 0">
+                    <i class="fa fa-2x" ng-class="event.face"></i>
+                    <div class="md-list-item-text">
+                      <h3>{{event.content}}</h3>
+                      <h4>{{event.module}}</h4>
+                      <p>{{event.time}}</p>
+                    </div>
+                    <md-divider inset></md-divider>
+                </md-list-item>
+              </md-list>
+            
+        </md-card-content>
+        
+    </md-card>   
+    </div>
+    
+    <div class="back">
+        <div id="library_detail" md-whiteframe="8" layout="column">
+            <div layout="row"  layout-align="center center">
+            <!--div id="modelinfo" layout="column">
+                <span class="lib_label">Device:</span> <span>ZL6120S</span>
+                <span class="lib_label">By:</span> <span>Amethy</span>
+                <br>
+                <span class="lib_label">Software:</span> <span>ZL6120S</span>
+                <span class="lib_label">By:</span> <span>Opstor</span>
+                
+                
+            </div-->
+            <img src="img/6120.png">
+            </div>
+            <div id="modelinfo" layout="column">
+                <div layout="row" layout-align="start center">
+                    <span class="lib_label" flex>Model:</span>
+                    ZL6120S
+                </div>
+                <br>
+                <md-divider></md-divider>
+                <br>
+                <div layout="row" layout-align="start center">
+                    <span class="lib_label" flex>Firmware:</span>
+                    {{fsStatus.version}}
+                </div>
+                <br>
+            </div>
+            
+        </div>
+    </div>
+    
+    </div>
+   
+   
+  </div>
+
+  </div>
+	
+</div>

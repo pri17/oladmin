@@ -1,0 +1,100 @@
+
+<div>
+	<md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+      	<md-button aria-label="Settings" ng-click="openNav()">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>{{'Ipc Manage' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+  <div class="toolbarheight"></div>
+
+<md-content layout="column" layout-align="">	
+  <div layout="row" layout-align="center center">
+      <md-button ng-click="add()" class="md-raised md-primary" flex="10">
+          	{{'Add' | translate}}
+      </md-button>
+      <md-button ng-click="addScan()" class="md-raised md-primary" flex="10">
+          	{{'Add by Scan' | translate}}
+      </md-button>
+      <md-button ng-click="reload()" class="md-raised md-primary" flex="10">
+          	{{'Refresh' | translate}}
+      </md-button>
+      <div flex="20"> </div>
+      <md-input-container class="md-block" flex>
+        <label>{{'Keyword' | translate}}</label>
+        <input md-maxlength="20" required md-no-asterisk name="name" ng-model="keyword">
+      </md-input-container>
+      <md-button ng-click="search()" class="md-raised" flex="10">
+          	{{'Search' | translate}}
+      </md-button>
+  </div>
+	<md-list>
+		<md-subheader class="md-no-sticky">{{'Ipc list' | translate}}</md-subheader>
+		
+		<md-list-item>
+		    <!--md-checkbox ng-model="checkin.selectedAll" ></md-checkbox-->
+		    <div layout="row" layout-align="center center" flex="80">
+		    	<div flex="10"> # </div>
+		 	<div ng-click="orderByItem='ip';reverse_flag=!reverse_flag" flex>{{'ip' | translate}}</div>
+		 	<!--div ng-click="orderByItem='uri';reverse_flag=!reverse_flag" flex>{{'uri' | translate}}</div-->
+		 	<div ng-click="orderByItem='nickname';reverse_flag=!reverse_flag" flex>{{'nickname' | translate}}</div>
+		    </div>
+		    <div flex>{{'Preview' | translate}}</div>
+		    <md-icon class="md-secondary" aria-label="Del" ng-click="delAll(ipc, $event)"><i class="fa fa-trash-o fa-2x"></i></md-icon>
+		</md-list-item>
+		<md-divider></md-divider>
+
+		<md-list-item ng-repeat="ipc in ipcs | orderBy:orderByItem:reverse_flag |limitTo:itemsPerPage:(currentPage - 1)*itemsPerPage">
+		    <!--md-checkbox ng-model="ipc.selected" ></md-checkbox-->
+		    <div layout="row" layout-align="center center" flex="80" ng-click="edit(ipc)">
+		    	<div flex="10">{{$index + (currentPage - 1)*itemsPerPage}} </div>
+		 	<div flex>{{ipc.ip}}</div>
+		 	<!--div flex>{{ipc.uri}}</div-->
+		 	<div flex>{{ipc.nickname}}</div>
+		    </div>
+		    <div ng-click="preview(ipc, $event)" flex><i class="fa fa-play-circle-o fa-2x"></i></div>
+		    <md-icon class="md-secondary" ng-click="del(ipc, $event)" aria-label="Del"><i class="fa fa-trash-o"></i></md-icon>
+		</md-list-item>
+	</md-list>	
+	
+	<!-- pagination -->
+   <md-divider></md-divider>
+   <div layout="row" layout-align="start center">
+   <md-button ng-click="currentPage=currentPage-1" ng-disabled="currentPage<=1" flex="10" layout-align="start center">
+   <i class="fa fa-arrow-circle-left" style="font-size: xx-large"></i>
+   </md-button>
+	<md-input-container >
+        <label>{{'Page' | translate}}</label>
+        <md-select ng-model="currentPage">
+          <md-option ng-repeat="page in pageNumOptions" value="{{page}}">
+            {{page}}
+          </md-option>
+        </md-select>
+    </md-input-container>
+    <md-button ng-click="currentPage=currentPage+1" ng-disabled="currentPage>=totalPage">
+    <i class="fa fa-arrow-circle-right" style="font-size: xx-large"></i>
+    </md-button>
+    <div flex></div>
+    <md-input-container>
+        <label>{{'Items/page' | translate}}</label>
+        <md-select ng-model="itemsPerPage">
+          <md-option ng-repeat="item in itemsPerPageOptions" value="{{item}}">
+            {{item}}
+          </md-option>
+        </md-select>
+    </md-input-container>
+   </div> 
+  </md-content>  
+
+</div>  

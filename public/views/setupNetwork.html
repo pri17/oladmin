@@ -1,0 +1,117 @@
+
+<div>
+	<md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+        <md-button aria-label="Settings" ng-click="openNav()">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>{{'Network Setup' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+  <div class="toolbarheight"></div>
+
+<md-content class="md-padding" layout-xs="column" layout="row" layout-align="start center" flex>
+
+<!--Network status-->
+    <md-card class="ol-card ol-card-network" ng-repeat="device in devices">
+        <md-card-header class="ol-card-header">
+         <md-card-avatar>
+            <md-icon md-font-icon="fa fa-dashboard fa-1x"></md-icon>
+         </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title">{{'System Status' | translate}}</span>
+            <span class="md-subhead">status</span>
+          </md-card-header-text>
+        </md-card-header>
+        <md-card-content>
+        <md-content>	
+
+            <div layout="row">
+            <h2 class="md-title" flex>{{'device' | translate}} :</h2>
+            <h2 class="md-title">{{device.device | translate}}</h2>
+            </div>
+            
+            <!--md-input-container class="md-block" flex-offset="20">
+            <label>{{'newname' | translate}}</label>
+            <input  name="c_tagname" ng-model="device.newname" >
+            </md-input-container-->
+            
+            <!--div layout="row">
+            <h2 class="md-title" flex>{{'MAC' | translate}} :</h2>
+            <h2 class="md-title">{{device.mac | translate}}</h2>
+            </div-->
+            
+            <div ng-if="device.type=='bridge'">
+            	<h2 class="md-title">{{'network bridge' | translate}} :</h2>
+            	<div layout="row" ng-repeat="ifdev in device.component" flex-offset="20">
+			      	<md-input-container class="md-block">
+			        <label>{{'device name' | translate}}</label>
+			        <input ng-model="ifdev.c_device">
+			        </md-input-container>
+			
+			        <md-button ng-click="delBridgeComponentAction(device, ifdev)" class="md-primary">
+			          	{{'Del' | translate}}
+			        </md-button>
+		      	</div>
+		      	<div layout="row">
+					<md-button ng-click="addBridgeComponentAction(device)" class="md-primary" flex>
+					  	{{'Add component' | translate}}
+					</md-button>
+				</div>
+            	
+            </div>
+            
+            <div layout="row">
+            <h2 class="md-title" flex> {{'DHCP' | translate}}: </h2>
+            <md-switch ng-model="device.dhcp" aria-label="dhcp switch" class="md-primary"> <span ng-if="device.dhcp">开</span> <span ng-if="!device.dhcp">关</span>
+            </md-switch>
+            </div>
+            <p><md-divider inset></md-divider></p>
+            
+            <div ng-if="!device.dhcp" flex-offset="20">
+            <md-input-container class="md-block">
+            <label>{{'ip' | translate}}</label>
+            <input  name="c_tagname" ng-model="device.ip" >
+            </md-input-container>
+            <md-input-container class="md-block">
+            <label>{{'mask' | translate}}</label>
+            <input  name="c_tagname" ng-model="device.mask" >
+            </md-input-container>
+            <md-input-container class="md-block">
+            <label>{{'gateway' | translate}}</label>
+            <input  name="c_tagname" ng-model="device.gateway" >
+            </md-input-container>
+            <md-input-container class="md-block">
+            <label>{{'DNS' | translate}}</label>
+            <input  name="c_tagname" ng-model="device.dns" >
+            </md-input-container>
+            </div>
+            
+            <div layout="row">
+            <h2 class="md-title" flex> {{'Default Network' | translate}}: </h2>
+            <md-switch ng-model="device.default" aria-label="default switch" class="md-primary" ng-change="defautlNetworkChange(device)"> <span ng-if="device.default">开</span> <span ng-if="!device.default">关</span>
+            </md-switch>
+            </div>
+        </md-content>
+        </md-card-content>
+    </md-card>
+
+  </md-content>  
+  <md-content layout="row" layout-align="start center">
+  	  <div flex="20" class="md-padding">
+  	  	{{dmesg}}
+  	  </div>
+      <md-button class="md-primary md-raised" ng-click="submitAction()" flex-offset="20" flex="20">{{'Save' | translate}}</md-button>
+      
+  </md-content>
+
+</div>  

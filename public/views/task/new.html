@@ -1,0 +1,70 @@
+<div>
+    <md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+        <md-button aria-label="Settings" ng-click="openNav()">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>{{'task_new' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    
+  <div class="toolbarheight"></div>
+    
+    <md-content>
+       
+        <div class="md-padding" layout-xs="column" layout="row" flex>
+            
+            <md-card class="ol-card ol-card-network" flex>
+                <md-card-content>
+                    <md-list flex="">
+                        <md-list-item class="md-3-line" layout="column" ng-repeat="font in value | orderBy:orderByItem:reverse_flag |limitTo:itemsPerPage:(currentPage - 1)*itemsPerPage" >
+                            <div class="md-list-item-text" style="width: 250px;" layout="row" layout-align="center center"  flex="80">
+                                <h4 flex="40" class="md-title"><a ui-sref="task.details({id:{{font.taskValue}},type:'new'})" class="ilink">{{'task' | translate}}{{font.taskValue}} </a></h4>
+                                <h4 flex><a ui-sref="task.details({id:{{font.taskValue}},type:'new'})" class="ilink">{{font.taskTime}}</a></h4>
+                            </div>
+                            <md-divider inset =""></md-divider>
+                        </md-list-item>
+                    </md-list>
+                    
+                    <div layout="row" layout-align="start center">
+                        <md-button ng-click="currentPage=currentPage-1" ng-disabled="currentPage<=1" flex="10" layout-align="start center">
+                            <i class="fa fa-arrow-circle-left" style="font-size: xx-large"></i>
+                        </md-button>
+                             <md-input-container >
+                             <label>{{'Page' | translate}}</label>
+                             <md-select ng-model="currentPage">
+                               <md-option ng-repeat="page in pageNumOptions" value="{{page}}">
+                                 {{page}}
+                               </md-option>
+                             </md-select>
+                         </md-input-container>
+                         <md-button ng-click="currentPage=currentPage+1" ng-disabled="currentPage>=totalPage">
+                            <i class="fa fa-arrow-circle-right" style="font-size: xx-large"></i>
+                         </md-button>
+                         <div flex></div>
+                         <md-input-container>
+                             <label>{{'Items/page' | translate}}</label>
+                             <md-select ng-model="itemsPerPage">
+                               <md-option ng-repeat="item in itemsPerPageOptions" value="{{item}}">
+                                 {{item}}
+                               </md-option>
+                             </md-select>
+                         </md-input-container>
+                    </div> 
+                    
+                </md-card-content>
+            </md-card>
+            
+        </div>
+        
+    </md-content>
+</div>

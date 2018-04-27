@@ -1,0 +1,96 @@
+
+<div>
+	<md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+        <md-button aria-label="Settings" ng-click="openNav()">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>{{'Operate Setup' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+  <div class="toolbarheight"></div>
+
+<md-content class="md-padding" layout="column" flex>
+
+<!--System status-->
+    <md-card class="" flex >
+        <md-card-header class="ol-card-header">
+         <md-card-avatar>
+            <md-icon md-font-icon="fa fa-dashboard fa-1x"></md-icon>
+         </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title">{{'Robot' | translate}} {{raid.device}}</span>
+            <span class="md-subhead">status</span>
+          </md-card-header-text>
+        </md-card-header>
+        <md-card-content>
+            <div layout="row">
+                <h3 flex=20>{{'Action type'|translate}}:</h3>
+                <md-radio-group ng-model="action.type" layout="row" layout-align="center center">
+    		      <md-radio-button value="L2D">{{'Library To Drive' | translate}}</md-radio-button>
+    		      <md-radio-button value="D2L">{{'Drive To Library' | translate}}</md-radio-button>
+    		      <md-radio-button value="SWAP">{{'Swap among Library' | translate}}</md-radio-button>
+    		      <md-radio-button value="INIT">{{'Init' | translate}}</md-radio-button>
+    		    </md-radio-group>
+            </div>
+            <div ng-if="action.type != 'INIT'">
+            <div layout="row">
+            <h3 flex>{{'Source slot number' | translate}}:</h3>
+            <md-input-container class="md-block" flex-offset="20">
+            <label>{{'Slot' | translate}}</label>
+            <input  name="c_tagname" ng-model="action.slot" >
+            </md-input-container>
+            </div>
+            
+            <p>
+                <md-divider></md-divider>
+            </p>
+            <div layout="row" ng-if="action.type!='SWAP'">
+            <h3 flex>{{'Destination drive group'|translate}}:</h3>
+            <md-input-container flex=20>
+                <label>{{'Drive group number' | translate}}</label>
+                <md-select ng-model="action.drive">
+                  <md-option value="0">
+                    0
+                  </md-option>
+                  <md-option value="1">
+                    1
+                  </md-option>
+                </md-select>
+            </md-input-container>
+            </div>
+            <div layout="row" ng-if="action.type=='SWAP'">
+            <h3 flex>{{'Destination slot number' | translate}}:</h3>
+            <md-input-container class="md-block" flex-offset="20">
+            <label>{{'Slot' | translate}}</label>
+            <input  name="c_tagname" ng-model="action.drive" >
+            </md-input-container>
+            </div>
+            </div> <!-- ng-if INIT -->
+            <p>
+                <md-divider></md-divider>
+            </p>
+            <div layout="row" layout-align="center center">
+            <md-button class="md-primary md-raised" ng-click="doAction()" ng-disabled="!action.done">{{'Submit' | translate}}</md-button>
+            </div>
+            <md-progress-linear md-mode="determinate" value="{{action.progress}}"></md-progress-linear>
+        </md-card-content>
+        
+    </md-card>
+
+  </md-content>  
+  <md-content layout="row" layout-align="center center">
+      
+      
+  </md-content>
+
+</div>  

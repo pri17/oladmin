@@ -1,0 +1,27 @@
+<md-dialog aria-label="List dialog" layout-padding flex>
+ <md-dialog-content>
+ 	<div layout="row">
+ 		<p flex>{{'Device' | translate}}: {{device}} 
+ 		{{'Position' | translate}}: {{devices[device].substr(2,2)}} 
+ 		</p>
+ 		<md-button class="md-raised md-primary" ng-click="eject()">
+ 			{{'Eject' | translate}}
+ 		</md-button>
+ 		<md-button class="md-raised md-primary" ng-click="load()">
+ 			{{'Load' | translate}}
+ 		</md-button>
+ 	</div>
+ 	<md-divider></md-divider>
+ 	<div layout="row">
+ 		<md-button class="md-raised" ng-repeat="dev in realDevices" ng-click="devices[device] = dev">
+ 			{{dev.substr(2,2)}}
+ 		</md-button>
+ 	</div>
+       
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button ng-click="closeDialog()" class="md-primary md-raised">
+      {{'Close' | translate}}
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

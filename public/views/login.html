@@ -1,0 +1,51 @@
+<div  ng-cloak>
+	<md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+      	<a ui-sref="home">
+        <md-button aria-label="Go Back">
+         <md-icon md-svg-icon="img/icons/ic_arrow_back_24px.svg"></md-icon>
+        </md-button>
+        </a>
+        <h2>
+          <span>{{'Login' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+  <div class="toolbarheight"></div>
+  
+  <md-content layout-padding layout="row" layout-align="center center">	
+	<form name="loginForm">
+      <md-input-container class="md-block">
+        <label>{{'Username' | translate}}</label>
+        <md-icon><i class="fa fa-user"></i></md-icon>
+        <input md-maxlength="30" required md-no-asterisk name="username" ng-model="login.username">
+        <div ng-messages="loginForm.username.$error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>{{'Password' | translate}}</label>
+        <md-icon><i class="fa fa-eye"></i></md-icon>
+        <input required name="password" ng-model="login.password" type="password">
+        <div ng-messages="loginForm.password.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+      <div layout="row" layout-align="center center">
+      <md-button ng-click="loginAction()" class="md-raised md-primary">
+          	{{'Login' | translate}}
+      </md-button>
+      </div>
+    </form>
+
+  </md-content>
+
+</div>  

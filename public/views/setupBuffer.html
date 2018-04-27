@@ -1,0 +1,85 @@
+
+<div>
+	<md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+        <md-button aria-label="Settings" ng-click="openNav()">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>{{'Buffer Setup' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+  <div class="toolbarheight"></div>
+
+<md-content class="md-padding" layout="column" flex>
+
+<!--System status-->
+    <md-card class="" flex ng-repeat="raid in raids">
+        <md-card-header class="ol-card-header">
+         <md-card-avatar>
+            <md-icon md-font-icon="fa fa-dashboard fa-1x"></md-icon>
+         </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title">{{'RAID ' | translate}} {{raid.device}}</span>
+            <span class="md-subhead">status</span>
+          </md-card-header-text>
+        </md-card-header>
+        <md-card-content>
+            <div layout="row">
+                <h3 flex="20">{{'Step 1' | translate}}: {{'Select disks'|translate}}:</h3>
+                <div flex-offset="5">
+                <md-checkbox ng-checked="check_exists(item, raid.disk)" ng-click="check_toggle(item, raid.disk)" ng-if="check_if(item, raid.disk)" ng-repeat="item in disks">
+                   {{ item.device }} {{ item.capacity}}
+                </md-checkbox>
+                </div>
+            </div>
+            <div layout="row" ng-class="{'ol-disabled': raid.disk.length<2}">
+            <h3 flex>{{'Step 2'|translate}}: {{'Create RAID' | translate}}:</h3>
+            <md-switch ng-model="raid.raid" aria-label="raid switch" class="md-primary" flex="10"> <span ng-if="raid.raid">是</span> <span ng-if="!raid.raid">否</span>
+            </md-switch>
+            <md-radio-group ng-model="raid.level" layout="row" layout-align="center center" ng-disabled="raid.disk.length<2" ng-if="raid.raid">
+		      <md-radio-button value="0">RAID0</md-radio-button>
+		      <md-radio-button value="1">RAID1</md-radio-button>
+		      <md-radio-button value="5">RAID5</md-radio-button>
+		    </md-radio-group>
+            <md-button class="md-primary md-raised" ng-disabled="raid.disk.length<2" ng-click="createRaidAction(raid)">{{'Create RAID' | translate}}</md-button>
+            </div>
+            <md-progress-linear md-mode="determinate" value="{{raid_progress}}"></md-progress-linear>
+            <p>
+                <md-divider></md-divider>
+            </p>
+            <div layout="row">
+            <h3 flex>{{'Step 3'|translate}}: {{'Format'|translate}}:</h3>
+            <md-button class="md-primary md-raised" ng-click="formatAction(raid)">{{'Format' | translate}}</md-button>
+            </div>
+            <md-progress-linear md-mode="determinate" value="{{mkfs_progress}}"></md-progress-linear>
+            <p>
+                <md-divider></md-divider>
+            </p>
+            <div layout="row">
+            <h3 flex>{{'Step 4'|translate}}: {{'Select mount point'|translate}}:</h3>
+            <md-radio-group ng-model="raid.mount_point" layout="row" layout-align="center center">
+		      <md-radio-button value="/mnt/local/hdd">hdd</md-radio-button>
+		      <md-radio-button value="/mnt/data">ssd</md-radio-button>
+		    </md-radio-group>
+            <md-button class="md-primary md-raised" ng-click="submitAction()">{{'Submit' | translate}}</md-button>
+            </div>
+        </md-card-content>
+        
+    </md-card>
+
+  </md-content>  
+  <md-content layout="row" layout-align="center center">
+      
+      
+  </md-content>
+
+</div>  

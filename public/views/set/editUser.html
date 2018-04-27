@@ -1,0 +1,75 @@
+
+<div>
+	<md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+      	<a ui-sref="setup.user">
+        <md-button aria-label="Go Back">
+         <md-icon md-svg-icon="img/icons/ic_arrow_back_24px.svg"></md-icon>
+        </md-button>
+        </a>
+        <h2>
+          <span>{{'Add user' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+  <div class="toolbarheight"></div>
+  
+  <md-content layout-padding layout="row" layout-align="center center">	
+	
+	<div layout="column" flex=80>
+            
+	    <md-input-container class="md-block">
+                <label>{{'Username' | translate}}</label>
+                <input required name="c_name" ng-model="users.username">
+            </md-input-container>
+            
+            <md-input-container class="md-block">
+                <label>{{'Password' | translate}}</label>
+                <input type="password" required name="c_password" ng-model="users.userpassword">
+            </md-input-container>
+            
+            <md-input-container class="md-block">
+                <label>{{'userrestpassword' | translate}}</label>
+                <input type="password" required name="c_passwords" ng-model="passwords">
+                <span style="color:red" ng-show="users.userpassword!=passwords">两次密码不一致</span>
+            </md-input-container>
+            
+            <md-input-container class="md-block">
+                <label>{{'user phone' | translate}}</label>
+                <input name="c_phone" ng-model="users.userphone">
+            </md-input-container>
+            
+            <md-input-container class="md-block">
+                <label>{{'user mail' | translate}}</label>
+                <input name="c_mail" type="email" ng-model="users.usermail">
+            </md-input-container>
+	
+            <md-input-container class="md-block">
+                <label>{{'user permissionsid' | translate}}</label>
+                <!-- input name="c_permissionsid" ng-model="user.permissionsid" -->
+                <md-select multiple="multiple" required ng-model="users.permissionsid" layout="row">
+                    <md-option ng-repeat="index in permissions" value='{{index.id}}'>{{index.name}}</md-option>
+                </md-select>
+            </md-input-container>
+      
+            <div layout="row" layout-align="center center">
+                <md-button ng-click="submitAction()" class="md-raised md-primary">
+                          {{'Submit' | translate}}
+                </md-button>
+                <a ui-sref="setup.user">
+                    <md-button class=" md-primary">
+                              {{'Return' | translate}}
+                    </md-button>
+                </a>
+            </div>
+      </div>
+    
+  </md-content>
+</div>  

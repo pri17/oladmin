@@ -1,0 +1,264 @@
+<style >
+    .bottom_magezin{
+        margin-top: 30px;
+    }
+   #tool_red{
+        background-color:  #e02222;
+        height: 40px;
+    }
+    #tool_purple{
+        background-color:  #852b99;
+        height: 40px;
+    }
+    #tool_blue{
+        background-color:   #4b8df8 !important;
+        height: 40px;
+    }
+    .button_green{
+        color: white;
+        text-shadow: none;
+        background-color: #35aa47;
+    }
+</style>
+<div>
+    <md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+        <md-button aria-label="Settings" ng-click="openNav()">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>{{'Magazine' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    
+    <div class="toolbarheight"></div>
+    
+    <md-content layout='column' layout-align=''>
+        
+           
+            <!-- 水平校准 -->
+            <md-card md-theme="" id="md-card_red"  style="border: 1px solid #e02222">
+                <md-toolbar class="md-hue-2" id="tool_red">
+                     <div class="md-toolbar-tools" >
+                         <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+                                <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+                         </md-button>
+                         <h2><span>{{'hAdjustTitle' | translate}}</span></h2>
+                         <span flex=""></span>
+                         <label>{{HAdjustingHintId | translate}}</label>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="showAndHide('red')">
+                             <md-icon md-svg-icon="img/icons/ic_chevron_right_24px.svg" style="transform: rotate(90deg);"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="">
+                             <md-icon md-svg-icon="img/icons/ic_build_24px.svg"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="">
+                             <md-icon md-svg-icon="img/icons/ic_refresh_24px.svg"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="showClose('red')">
+                             <md-icon md-svg-icon="img/icons/ic_close_24px.svg"></md-icon>
+                         </md-button>
+                     </div>
+                 </md-toolbar>
+                <md-card-title id="card_red" style="display:block">
+                    <md-card-title-text>
+                        <h4><span>{{'drivcerBox' | translate}}{{boxNo}}{{'hAdjustTitle' | translate}}</span></h4>
+                        <md-list flex="">
+                            
+                            <md-list-item class="md-3-line">
+                                <div class="md-list-item-text" layout="column">
+                                    <div layout="">
+                                        <md-slider flex="" md-discrete="" ng-model="horizontalAdjust1" step="1"  min="1" max="9" aria-label="horizontalAdjust1"></md-slider>
+                                    </div>
+                                    <div layout="">
+                                        <md-slider flex="" md-discrete="" ng-model="horizontalAdjust2" step="1"  min="1" max="9" aria-label="horizontalAdjust2"></md-slider>
+                                    </div>
+                                    
+                                </div>
+                                <md-button class="md-raised md-primary bottom_magezin" ng-click="MagazineAdjust('left')">{{'forward_lead'| translate}}</md-button>
+                            </md-list-item>
+                            
+                            <md-list-item class="md-3-line">
+                                <div class="md-list-item-text" layout="column">
+                                    <div layout="">
+                                        <md-slider flex="" md-discrete="" ng-model="horizontalAdjust3" step="1"  min="1" max="9" aria-label="horizontalAdjust3"></md-slider>
+                                    </div>
+                                    <div layout="">
+                                        <md-slider flex="" md-discrete="" ng-model="horizontalAdjust4" step="1"  min="1" max="9" aria-label="horizontalAdjust4"></md-slider>
+                                    </div>
+                                    
+                                </div>
+                                <md-button class="md-raised md-primary bottom_magezin" ng-click="MagazineAdjust('leftStep')">{{'a_step_forward'| translate}}</md-button>
+                            </md-list-item>
+                            
+                            <md-list-item class="md-3-line">
+                                <div class="md-list-item-text" layout="column">
+                                    <div layout="">
+                                        <md-slider flex="" md-discrete="" ng-model="horizontalAdjust5" step="1"  min="1" max="9" aria-label="horizontalAdjust5"></md-slider>
+                                    </div>
+                                    <div layout="">
+                                        <md-slider flex="" md-discrete="" ng-model="horizontalAdjust6" step="1"  min="1" max="9" aria-label="horizontalAdjust6"></md-slider>
+                                    </div>
+                                    
+                                </div>
+                                <md-button class="md-raised md-primary bottom_magezin" ng-click="MagazineAdjust('rightStep')">{{'a_step_backward_lead'| translate}}</md-button>
+                            </md-list-item>
+                            
+                            <md-list-item class="md-3-line">
+                                <div class="md-list-item-text" layout="column">
+                                    <div layout="">
+                                        <md-slider flex="" md-discrete="" ng-model="horizontalAdjust7" step="1"  min="1" max="9" aria-label="horizontalAdjust7"></md-slider>
+                                    </div>
+                                    <div layout="">
+                                        <md-slider flex="" md-discrete="" ng-model="horizontalAdjust8" step="1"  min="1" max="9" aria-label="horizontalAdjust8"></md-slider>
+                                    </div>
+                                    
+                                </div>
+                                <md-button class="md-raised md-primary bottom_magezin" ng-click="MagazineAdjust('right')">{{' backward_lead'| translate}}</md-button>
+                            </md-list-item>
+                            
+                        </md-list>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+            
+            <!-- Disc_cartridge -->
+            <md-card md-theme="" id="md-card_purple"  style="border: 1px solid #852b99">
+                <md-toolbar class="md-hue-2" id="tool_purple">
+                     <div class="md-toolbar-tools" >
+                         <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+                                <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+                         </md-button>
+                         <h2><span>{{'VerticalAlignment' | translate}}</span></h2>
+                         <span flex=""></span>
+                         <label>{{VAdjustingHintId | translate}}</label>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="showAndHide('purple')">
+                             <md-icon md-svg-icon="img/icons/ic_chevron_right_24px.svg" style="transform: rotate(90deg);"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="">
+                             <md-icon md-svg-icon="img/icons/ic_build_24px.svg"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="">
+                             <md-icon md-svg-icon="img/icons/ic_refresh_24px.svg"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="showClose('purple')">
+                             <md-icon md-svg-icon="img/icons/ic_close_24px.svg"></md-icon>
+                         </md-button>
+                     </div>
+                 </md-toolbar>
+                <md-card-title id="card_purple" style="display:block">
+                    <md-card-title-text>
+                        <h4><span>{{'drivcerBox' | translate}}{{boxNo}}{{'VerticalAlignment' | translate}}</span></h4>
+                        <md-list flex="">
+                            
+                            <md-list-item class="md-3-line">
+                                <div class="md-list-item-text" layout="column">
+                                    <div layout="">
+                                        <md-slider flex="" md-discrete="" ng-model="verticalAdjust1" step="1"  min="1" max="9" aria-label="verticalAdjust1"></md-slider>
+                                    </div>
+                                    <div layout="">
+                                        <md-slider flex="" md-discrete="" ng-model="verticalAdjust2" step="1"  min="1" max="9" aria-label="verticalAdjust2"></md-slider>
+                                    </div>
+                                    
+                                </div>
+                                <md-button class="md-raised md-primary bottom_magezin" ng-click="MagazineAdjust('up')">{{'shift_up'| translate}}</md-button>
+                            </md-list-item>
+                            
+                            <md-list-item class="md-3-line">
+                                <div class="md-list-item-text" layout="column">
+                                    <div layout="">
+                                        <md-slider flex="" md-discrete="" ng-model="verticalAdjust3" step="1"  min="1" max="9" aria-label="verticalAdjust3"></md-slider>
+                                    </div>
+                                    <div layout="">
+                                        <md-slider flex="" md-discrete="" ng-model="verticalAdjust4" step="1"  min="1" max="9" aria-label="verticalAdjust4"></md-slider>
+                                    </div>
+                                    
+                                </div>
+                                <md-button class="md-raised md-primary bottom_magezin" ng-click="MagazineAdjust('upStep')">{{'Move_up_one_step'| translate}}</md-button>
+                            </md-list-item>
+                            
+                            <md-list-item class="md-3-line">
+                                <div class="md-list-item-text" layout="column">
+                                    <div layout="">
+                                        <md-slider flex="" md-discrete="" ng-model="verticalAdjust5" step="1"  min="1" max="9" aria-label="verticalAdjust5"></md-slider>
+                                    </div>
+                                    <div layout="">
+                                        <md-slider flex="" md-discrete="" ng-model="verticalAdjust6" step="1"  min="1" max="9" aria-label="verticalAdjust6"></md-slider>
+                                    </div>
+                                    
+                                </div>
+                                <md-button class="md-raised md-primary bottom_magezin" ng-click="MagazineAdjust('downStep')">{{'Move_one_step_down'| translate}}</md-button>
+                            </md-list-item>
+                            
+                            <md-list-item class="md-3-line">
+                                <div class="md-list-item-text" layout="column">
+                                    <div layout="">
+                                        <md-slider flex="" md-discrete="" ng-model="verticalAdjust7" step="1"  min="1" max="9" aria-label="verticalAdjust7"></md-slider>
+                                    </div>
+                                    <div layout="">
+                                        <md-slider flex="" md-discrete="" ng-model="verticalAdjust8" step="1"  min="1" max="9" aria-label="verticalAdjust8"></md-slider>
+                                    </div>
+                                    
+                                </div>
+                                <md-button class="md-raised md-primary bottom_magezin" ng-click="MagazineAdjust('down')">{{' shift_down'| translate}}</md-button>
+                            </md-list-item>
+                            
+                        </md-list>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+            
+            <!-- Disc_cartridge -->
+            <md-card md-theme="" id="md-card_blue"  style="border: 1px solid #4b8df8;">
+                <md-toolbar class="md-hue-2" id="tool_blue">
+                    <div class="md-toolbar-tools">
+                         <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+                                <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+                         </md-button>
+                         <h2><span>{{'save_CD_box_position' | translate}}</span></h2>
+                         <span flex=""></span>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="showAndHide('blue')">
+                             <md-icon md-svg-icon="img/icons/ic_chevron_right_24px.svg" style="transform: rotate(90deg);"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="">
+                             <md-icon md-svg-icon="img/icons/ic_build_24px.svg"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="">
+                             <md-icon md-svg-icon="img/icons/ic_refresh_24px.svg"></md-icon>
+                         </md-button>
+                         <md-button class="md-icon-button" aria-label="favorite" ng-click="showClose('blue')">
+                             <md-icon md-svg-icon="img/icons/ic_close_24px.svg"></md-icon>
+                         </md-button>
+                     </div>
+                 </md-toolbar>
+                <md-card-title id="card_blue" style="display:block">
+                    <md-card-title-text>
+                        <md-list flex="">
+                            
+                            <md-list-item class="md-3-line">
+                                <div class="md-list-item-text" layout="column">
+                                    <div layout="">
+                                        <md-button class="button_green" ng-click="getMagazinePosition()">{{'machine'| translate}}</md-button>
+                                        <md-button ng-click="">{{'drivcerBox' | translate}}{{boxNo}}{{'CD_position' | translate}}{{position}}</md-button>
+                                        <md-button class="button_green" ng-click="saveMagazineAdjust()">{{'set_start_position'| translate}}</md-button>
+                                    </div>
+                                   
+                                </div>
+                            </md-list-item>
+                            
+                        </md-list>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+            
+        
+    </md-content>
+</div>

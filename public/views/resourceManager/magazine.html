@@ -1,0 +1,82 @@
+<div>
+    <md-toolbar class="toolbarfix">
+      <div class="md-toolbar-tools">
+        <md-button aria-label="Settings" ng-click="openNav()">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>{{'Medium' | translate}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Learn More">
+          {{'Logout' | translate}}
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    
+    <div class="toolbarheight"></div>
+    
+    <md-content layout="column" layout-align="">
+        <div layout="row" layout-align="center center">
+            <md-input-container class="md-block" flex>
+                <label>{{'Keyword' | translate}}</label>
+                <input md-maxlength="20" required md-no-asterisk name="name" ng-model="keyword">
+            </md-input-container>
+            <md-button ng-click="search()" class="md-raised" flex="20">{{'Search' | translate}}</md-button>
+        </div>
+        <md-list>
+            <md-list-item>
+                <div layout="row" layout-align="center center" flex="80">
+                    <div flex="10">{{'magazine_No' | translate}}</div>
+                    <div ng-click="orderByItem='magazineTVolume';reverse_flag=!reverse_flag" flex>{{'magazine_TVolume' | translate}}</div>
+                    <div ng-click="orderByItem='magazineUVolume';reverse_flag=!reverse_flag" flex>{{'magazine_UVolume' | translate}}</div>
+                    <div ng-click="orderByItem='magazineRadio';reverse_flag=!reverse_flag" flex>{{'magazine_Radio' | translate}}</div>
+                    <div ng-click="orderByItem='magazineStatus';reverse_flag=!reverse_flag" flex>{{'magazine_Status' | translate}}</div>
+                    <div ng-click="orderByItem='magazineAdjust';reverse_flag=!reverse_flag" flex>{{'magazine_AdjustMagazine' | translate}}</div>
+                    <div ng-click="orderByItem='magazineView';reverse_flag=!reverse_flag" flex>{{'magazine_View' | translate}}</div>
+                </div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item ng-repeat="value in itemsValue | orderBy:orderByItem:reverse_flag |limitTo:itemsPerPage:(currentPage - 1)*itemsPerPage">
+                <div layout="row" layout-align="center center" flex="80">
+	  <div flex="10">{{value.magazineNo}} </div>
+                    <div flex>{{value.magazineTVolume}}</div>
+                    <div flex>{{value.magazineUVolume}}</div>
+                    <div flex>{{value.magazineRadio}}</div>
+                    <div flex>{{value.magazineStatus | translate}}</div>
+                    <div flex><a ui-sref="resource.magazineAdjust({id:{{value.magazineNo}}})" class="ilink">{{value.magazineAdjust}}</a></div>
+                    <div flex><a ui-sref="resource.magazineDetail({id:{{value.magazineNo}}})" class="ilink">{{value.magazineView}}</a></div>
+	</div>
+            </md-list-item>
+        </md-list>
+        <md-divider></md-divider>
+        <div layout="row" layout-align="start center">
+            <md-button ng-click="currentPage=currentPage-1" ng-disabled="currentPage<=1" flex="10" layout-align="start center">
+                <i class="fa fa-arrow-circle-left" style="font-size: xx-large"></i>
+            </md-button>
+                 <md-input-container >
+                 <label>{{'Page' | translate}}</label>
+                 <md-select ng-model="currentPage">
+                   <md-option ng-repeat="page in pageNumOptions" value="{{page}}">
+                     {{page}}
+                   </md-option>
+                 </md-select>
+             </md-input-container>
+             <md-button ng-click="currentPage=currentPage+1" ng-disabled="currentPage>=totalPage">
+                <i class="fa fa-arrow-circle-right" style="font-size: xx-large"></i>
+             </md-button>
+             <div flex></div>
+             <md-input-container>
+                 <label>{{'Items/page' | translate}}</label>
+                 <md-select ng-model="itemsPerPage">
+                   <md-option ng-repeat="item in itemsPerPageOptions" value="{{item}}">
+                     {{item}}
+                   </md-option>
+                 </md-select>
+             </md-input-container>
+        </div> 
+    </md-content>
+</div>
