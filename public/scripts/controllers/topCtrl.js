@@ -189,6 +189,17 @@ app.controller('topCtrl', ['$scope', '$mdSidenav', '$window', function($scope, $
 //		        },
 		    ],
 		},
+		{
+            'title' : 'Groups',
+            'type' : 'toggle',
+            'children' : [
+                {
+                    'title' : 'Manage',
+                    'type' : 'link',
+                    'state' : 'groups.manage'
+                },
+            ],
+		}
 
 	];
 	

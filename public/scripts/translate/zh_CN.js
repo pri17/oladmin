@@ -64,6 +64,8 @@ translations.zh_CN = {
     'usernotnull': '请填写您的用户名！',
     'userpwdnotnull': '请填写您的用户密码！',
     'userpermissionsid': '请填选择用户权限！',
+    'Groups': '集群',
+    'manage': '管理',
     
     //===========start checkin related js/html===========
         'studentname':  '学生姓名',

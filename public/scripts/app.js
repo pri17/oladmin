@@ -731,6 +731,25 @@ app.config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function
             }
         }
     })
+        .state('groups',{
+            template: '<div ui-view></div>',
+            url:'/groups',
+        })
+        .state('groups.manage',{
+            templateUrl:'views/groups/manage.html',
+            url:'/manage',
+            controller:'groupsManageCtrl',
+            resolve:{
+                loadMyFile:function($ocLazyLoad){
+                    return $ocLazyLoad.load({
+                        name:'ciApp',
+                        files:['scripts/controllers/groups/manage.js',
+                            'scripts/services/groups.js'
+                        ]
+                    });
+                }
+            }
+        })
     
     
 /*    
