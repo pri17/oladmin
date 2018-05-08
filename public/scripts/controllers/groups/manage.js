@@ -2,26 +2,40 @@
 
 angular.module('ciApp').controller('groupsManageCtrl',['$scope', '$stateParams',
     function($scope, $stateParams){
-    // var taskNum = $stateParams.id;
-    // var taskType = $stateParams.type;
 
-    // $scope.detailsValue = [1,2,3];
+        $scope.keyword = '';
 
-    // $scope.details = function(){
-    //     var param = {'taskNum':taskNum, 'taskType':taskType};
-    //     var promesa = ServiceTask.getDetails("details", param);
-    //     promesa.then(function(data){
-    //         if(data.status == 'OK'){
-    //             //$scope.dateTime(data.message);
-    //             $scope.detailsValue =data.message;
-    //             //console.log("Submit "+data.message);
-    //         }
-    //     },function(error){
-    //         console.log("Submit Error "+error);
-    //     });
-    // };
-    //
-    // $scope.details();
+        $scope.add = function(){
+            $state.transitionTo('device.add');
+        };
+
+        $scope.search = function(){
+            var promesa = 	ServiceIpc.search($scope.keyword);
+            promesa.then(function(data)
+                {
+                    var text = '';
+                    if(data.status == 'OK')
+                    {
+                        $scope.ipcs = data.data;
+                    }
+                    else
+                    {
+                        var pos = 'bottom left';
+                        $mdToast.show(
+                            $mdToast.simple()
+                                .textContent($filter('translate')('Search failed'))
+                                .position(pos)
+                                .hideDelay(2000)
+                        );
+                    }
+
+                }
+                ,function(error)
+                {
+                    alert("Error " + error);
+                });
+        };
+
 
 }]);
 

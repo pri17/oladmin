@@ -1,11 +1,9 @@
 <div>
     <md-toolbar class="toolbarfix">
         <div class="md-toolbar-tools">
-            <a>
-                <md-button aria-label="Go Back">
-                    <md-icon md-svg-icon="img/icons/ic_arrow_back_24px.svg"></md-icon>
-                </md-button>
-            </a>
+            <md-button aria-label="Settings" ng-click="openNav()">
+                <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+            </md-button>
             <h2>
                 <span>{{'Groups' | translate}}</span>
             </h2>
@@ -21,74 +19,76 @@
 
     <div class="toolbarheight"></div>
 
-    <md-content>
-        <div class="md-padding" layout-xs="column" layout="row" flex>
+    <md-content layout="column" layout-align="">
+        <div layout="row" layout-align="center center">
+            <md-button ng-click="add()" class="md-raised md-primary" flex="10">
+                {{'AddDevice' | translate}}
+            </md-button>
+            <div flex="20"> </div>
+            <md-input-container class="md-block" flex>
+                <label>{{'Keyword' | translate}}</label>
+                <input md-maxlength="20" required md-no-asterisk name="name" ng-model="keyword">
+            </md-input-container>
+            <md-button ng-click="search()" class="md-raised" flex="10">
+                {{'Search' | translate}}
+            </md-button>
+        </div>
+        <md-list>
+            <md-subheader class="md-no-sticky">{{'Device list' | translate}}</md-subheader>
 
-            <md-card class="ol-card" flex>
+            <md-list-item>
+                <!--md-checkbox ng-model="checkin.selectedAll" ></md-checkbox-->
+                <div layout="row" layout-align="center center" flex="80">
+                    <div flex="10"> # </div>
+                    <div flex>{{'deviceName' | translate}}</div>
+                    <!--div ng-click="orderByItem='uri';reverse_flag=!reverse_flag" flex>{{'uri' | translate}}</div-->
+                    <div flex>{{'deviceIp' | translate}}</div>
+                </div>
+                <div flex>{{'deviceVersion' | translate}}</div>
+                <div flex>{{'edit' | translate}}</div>
+                <!--<md-icon class="md-secondary" aria-label="Del" ng-click="delAll(ipc, $event)"><i class="fa fa-trash-o fa-2x"></i></md-icon>-->
+            </md-list-item>
+            <md-divider></md-divider>
 
-                <md-card-header class="ol-card-header">
-                    <md-card-avatar>
-                        <md-icon md-font-icon="fa fa-dashboard fa-1x"></md-icon>
-                    </md-card-avatar>
-                    <md-card-header-text>
-                        <span class="md-title">{{'System Status' | translate}}</span>
-                        <span class="md-subhead">status</span>
-                    </md-card-header-text>
-                </md-card-header>
+            <md-list-item ng-repeat="ipc in ipcs | orderBy:orderByItem:reverse_flag |limitTo:itemsPerPage:(currentPage - 1)*itemsPerPage">
+                <!--md-checkbox ng-model="ipc.selected" ></md-checkbox-->
+                <div layout="row" layout-align="center center" flex="80" ng-click="edit(ipc)">
+                    <div flex="10">{{$index + (currentPage - 1)*itemsPerPage}} </div>
+                    <div flex>{{ipc.ip}}</div>
+                    <!--div flex>{{ipc.uri}}</div-->
+                    <div flex>{{ipc.nickname}}</div>
+                </div>
+                <div ng-click="preview(ipc, $event)" flex><i class="fa fa-play-circle-o fa-2x"></i></div><md-icon class="md-secondary" ng-click="del(ipc, $event)" aria-label="Del"><i class="fa fa-trash-o"></i></md-icon>
+            </md-list-item>
+        </md-list>
 
-                <md-card-content>
-                    <div layout="row">
-                        <h2 class="md-title" flex><span class="md-subhead">{{'task_details_createTiem' | translate}}：{{detailsValue[1]}}</span></h2>
-                    </div>
-                    <md-divider inset =""></md-divider>
-
-                    <div layout="row">
-                        <h2 class="md-title" flex><span class="md-subhead">{{'task_details_taskNumber' | translate}}：{{detailsValue[2]}}</span></h2>
-                    </div>
-                    <md-divider inset =""></md-divider>
-
-                    <div layout="row">
-                        <h2 class="md-title" flex><span class="md-subhead">{{'task_details_taskType' | translate}}：{{detailsValue[3]}}</span></h2>
-                    </div>
-                    <md-divider inset =""></md-divider>
-
-                    <div layout="row">
-                        <h2 class="md-title" flex><span class="md-subhead">{{'task_details_driverBox' | translate}}：{{detailsValue[4]}}</span></h2>
-                    </div>
-                    <md-divider inset =""></md-divider>
-
-                    <div layout="row">
-                        <h2 class="md-title" flex><span class="md-subhead">{{'task_details_driverGrup' | translate}}：{{detailsValue[5]}}</span></h2>
-                    </div>
-                    <md-divider inset =""></md-divider>
-
-                    <div layout="row">
-                        <h2 class="md-title" flex><span class="md-subhead">{{'task_details_taskstatu' | translate}}：{{detailsValue[6]}}</span></h2>
-                    </div>
-                    <md-divider inset =""></md-divider>
-
-                    <div layout="row">
-                        <h2 class="md-title" flex><span class="md-subhead">{{'task_details_taskSelect' | translate}}：{{detailsValue[7]}}</span></h2>
-                    </div>
-                    <md-divider inset =""></md-divider>
-
-                    <div layout="row">
-                        <h2 class="md-title" flex><span class="md-subhead">{{'task_details_bufferInfo' | translate}}：{{detailsValue[9]}}</span></h2>
-                    </div>
-                    <md-divider inset =""></md-divider>
-
-                    <div layout="column">
-                        <div class="md-title" flex><span class="md-subhead">{{'task_details_time' | translate}}：</span>&nbsp;&nbsp;<span class="md-subhead">{{'task_details_Info' | translate}}：</span></div>
-                        <div layout = "row" ng-repeat="item in detailsValue[10]">
-                            <h2 class="md-title" flex><span class="md-subhead">{{item.timestamp}}</span>&nbsp;&nbsp;<span class="md-subhead">{{item.info}}</span></h2>
-                        </div>
-                    </div>
-
-                </md-card-content>
-
-            </md-card>
-
+        <!-- pagination -->
+        <md-divider></md-divider>
+        <div layout="row" layout-align="start center">
+            <md-button ng-click="currentPage=currentPage-1" ng-disabled="currentPage<=1" flex="10" layout-align="start center">
+                <i class="fa fa-arrow-circle-left" style="font-size: xx-large"></i>
+            </md-button>
+            <md-input-container >
+                <label>{{'Page' | translate}}</label>
+                <md-select ng-model="currentPage">
+                    <md-option ng-repeat="page in pageNumOptions" value="{{page}}">
+                        {{page}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-button ng-click="currentPage=currentPage+1" ng-disabled="currentPage>=totalPage">
+                <i class="fa fa-arrow-circle-right" style="font-size: xx-large"></i>
+            </md-button>
+            <div flex></div>
+            <md-input-container>
+                <label>{{'Items/page' | translate}}</label>
+                <md-select ng-model="itemsPerPage">
+                    <md-option ng-repeat="item in itemsPerPageOptions" value="{{item}}">
+                        {{item}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
         </div>
     </md-content>
-</div>
 
+</div>

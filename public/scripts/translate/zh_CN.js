@@ -66,6 +66,13 @@ translations.zh_CN = {
     'userpermissionsid': '请填选择用户权限！',
     'Groups': '集群',
     'manage': '管理',
+    'GroupManage':'集群管理',
+    'AddDevice': '设备添加',
+    'Device list': '设备列表',
+    'deviceName':'设备名',
+    'deviceIp':'设备ip',
+    'deviceVersion':'设备版本号',
+    'edit':'编辑',
     
     //===========start checkin related js/html===========
         'studentname':  '学生姓名',
