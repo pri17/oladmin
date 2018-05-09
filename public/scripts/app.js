@@ -750,6 +750,22 @@ app.config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function
                 }
             }
         })
+
+        .state('groups.add',{
+            templateUrl:'views/groups/deviceAdd.html',
+            url:'/add',
+            controller:'deviceAddCtrl',
+            resolve:{
+                loadMyFile:function($ocLazyLoad){
+                    return $ocLazyLoad.load({
+                        name:'ciApp',
+                        files:['scripts/controllers/groups/deviceAdd.js',
+                            'scripts/services/groups.js'
+                        ]
+                    });
+                }
+            }
+        })
     
     
 /*    

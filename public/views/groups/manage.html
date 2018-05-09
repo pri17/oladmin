@@ -50,15 +50,20 @@
             </md-list-item>
             <md-divider></md-divider>
 
-            <md-list-item ng-repeat="ipc in ipcs | orderBy:orderByItem:reverse_flag |limitTo:itemsPerPage:(currentPage - 1)*itemsPerPage">
+            <md-list-item ng-repeat="dd in dds | orderBy:orderByItem:reverse_flag |limitTo:itemsPerPage:(currentPage - 1)*itemsPerPage">
                 <!--md-checkbox ng-model="ipc.selected" ></md-checkbox-->
-                <div layout="row" layout-align="center center" flex="80" ng-click="edit(ipc)">
-                    <div flex="10">{{$index + (currentPage - 1)*itemsPerPage}} </div>
-                    <div flex>{{ipc.ip}}</div>
-                    <!--div flex>{{ipc.uri}}</div-->
-                    <div flex>{{ipc.nickname}}</div>
+                <div layout="row" layout-align="center center" flex="80" >
+                    <div flex="10">{{$index  + (currentPage - 1)*itemsPerPage}} </div>
+                    <div flex>{{dd.nickname}}</div>
+                    <div flex>{{dd.ip}}</div>
                 </div>
-                <div ng-click="preview(ipc, $event)" flex><i class="fa fa-play-circle-o fa-2x"></i></div><md-icon class="md-secondary" ng-click="del(ipc, $event)" aria-label="Del"><i class="fa fa-trash-o"></i></md-icon>
+                    <div flex>{{dd.version}}</div>
+                <div flex>
+                    <md-icon class="md-secondary" aria-label="Del" ng-click="delAll(dd, $event)" ><i class="fa fa-trash-o fa-2x"></i></md-icon>
+                    <!--<md-icon class="md-secondary" aria-label="Del" ng-click="delAll(dd, $event)" flex><i class="fa fa-trash-o fa-2x"></i></md-icon>-->
+                </div>
+                    <!--div flex>{{ipc.uri}}</div-->
+                <!--<div ng-click="preview(dd, $event)" flex><i class="fa fa-play-circle-o fa-2x"></i></div><md-icon class="md-secondary" ng-click="del(ipc, $event)" aria-label="Del"><i class="fa fa-trash-o"></i></md-icon>-->
             </md-list-item>
         </md-list>
 
