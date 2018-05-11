@@ -8,7 +8,7 @@
                 </md-button>
             </a>
             <h2>
-                <span>{{'Add Device' | translate}}</span>
+                <span>{{'Groups Edit' | translate}}</span>
             </h2>
             <span flex></span>
             <md-button class="md-raised" aria-label="Learn More">
@@ -22,41 +22,35 @@
     <div class="toolbarheight"></div>
 
     <md-content layout-padding layout="row" layout-align="center center">
+        <form name="ipcForm" flex=80>
 
-        <div layout="column" flex=80>
             <md-input-container class="md-block">
                 <label>{{'deviceName' | translate}}</label>
-                <input required name="c_name" ng-model="device.ip"
+                <input required name="d_name" ng-model="d.nickname"
                 >
             </md-input-container>
             <md-input-container class="md-block">
                 <label>{{'deviceIp' | translate}}</label>
-                <input required name="c_ip" ng-model="device.nickname"
+                <input required name="d_ip" ng-model="d.ip"
                 >
             </md-input-container>
             <md-input-container class="md-block">
                 <label>{{'deviceVersion' | translate}}</label>
-                <input name="c_version" ng-model="device.version"
+                <input name="d_version" ng-model="d.version"
                 >
             </md-input-container>
-            <!--<md-input-container class="md-block">-->
-                <!--<label>{{'class' | translate}}</label>-->
-                <!--<input name="c_class" ng-model="ipc.class"-->
-                <!--&gt;-->
-            <!--</md-input-container>-->
-
 
             <div layout="row" layout-align="center center">
-                <md-button ng-click="addAction()" class="md-raised md-primary">
+                <md-button ng-click="submitAction()" class="md-raised md-primary">
                     {{'Submit' | translate}}
                 </md-button>
-                <a ui-sref="groups.manage">
+                <a ui-sref="ipc.manage">
                     <md-button class=" md-primary">
                         {{'Return' | translate}}
                     </md-button>
                 </a>
             </div>
-        </div>
+        </form>
 
     </md-content>
 </div>  

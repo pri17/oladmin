@@ -766,6 +766,22 @@ app.config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function
                 }
             }
         })
+
+        .state('groups.edit',{
+            templateUrl:'views/groups/deviceEdit.html',
+            url:'/edit',
+            controller:'deviceEditCtrl',
+            resolve:{
+                loadMyFile:function($ocLazyLoad){
+                    return $ocLazyLoad.load({
+                        name:'ciApp',
+                        files:['scripts/controllers/groups/deviceEdit.js',
+                            'scripts/services/groups.js'
+                        ]
+                    });
+                }
+            }
+        })
     
     
 /*    

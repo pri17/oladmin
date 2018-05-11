@@ -141,6 +141,7 @@ $di->set('router', function() {
 	
 	$router->addResource('Fs', '/api/fs');
 	$router->addResource('Ipc', '/api/ipcs');
+	$router->addResource('Group','/api/groups');
 	
         $router->addResource('User', 'api/users');
 	

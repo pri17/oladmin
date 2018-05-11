@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('ciApp').controller('groupsManageCtrl',['$scope','$state','$mdDialog', '$mdToast',
-    function($scope, $state, $mdDialog, $mdToast){
+angular.module('ciApp').controller('groupsManageCtrl',['$scope','$filter','$state','$mdDialog', '$mdToast',
+    function($scope, $filter,$state, $mdDialog, $mdToast){
 
         $scope.keyword = '';
 
@@ -109,12 +109,12 @@ angular.module('ciApp').controller('groupsManageCtrl',['$scope','$state','$mdDia
 
 
         $scope.add = function(){
-            $state.transitionTo('groups.add');
+            $state.go('groups.add');
         };
 
         $scope.edit = function(item){
             var idx = $scope.dds.indexOf(item);
-            $state.transitionTo('device.edit', {'id': idx});
+            $state.transitionTo('groups.edit', {'id': idx});
         };
 
         $scope.search = function(){

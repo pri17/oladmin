@@ -72,8 +72,9 @@ translations.zh_CN = {
     'deviceName':'设备名',
     'deviceIp':'设备ip',
     'deviceVersion':'设备版本号',
-    'edit':'编辑',
+    'operation':'操作',
     'Add Device':'设备添加',
+    'Groups Edit':'设备编辑',
     
     //===========start checkin related js/html===========
         'studentname':  '学生姓名',
