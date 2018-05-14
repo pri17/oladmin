@@ -196,7 +196,7 @@ app.controller('topCtrl', ['$scope', '$mdSidenav', '$window', function($scope, $
                 {
                     'title' : 'Manage',
                     'type' : 'link',
-                    'state' : 'groups.manage'
+                    'state' : 'clusters.manage'
                 },
             ],
 		}
