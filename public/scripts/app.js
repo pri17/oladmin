@@ -731,52 +731,52 @@ app.config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function
             }
         }
     })
-        .state('groups',{
+        .state('clusters',{
             template: '<div ui-view></div>',
-            url:'/groups',
+            url:'/clusters',
         })
-        .state('groups.manage',{
-            templateUrl:'views/groups/manage.html',
-            url:'/manage',
-            controller:'groupsManageCtrl',
+        .state('clusters.manage',{
+            templateUrl:'views/clusters/manage.html',
+            url:'/clusters',
+            controller:'clustersManageCtrl',
             resolve:{
                 loadMyFile:function($ocLazyLoad){
                     return $ocLazyLoad.load({
                         name:'ciApp',
-                        files:['scripts/controllers/groups/manage.js',
-                            'scripts/services/groups.js'
+                        files:['scripts/controllers/clusters/manage.js',
+                            'scripts/services/clusters.js'
                         ]
                     });
                 }
             }
         })
 
-        .state('groups.add',{
-            templateUrl:'views/groups/deviceAdd.html',
+        .state('clusters.add',{
+            templateUrl:'views/clusters/deviceAdd.html',
             url:'/add',
             controller:'deviceAddCtrl',
             resolve:{
                 loadMyFile:function($ocLazyLoad){
                     return $ocLazyLoad.load({
                         name:'ciApp',
-                        files:['scripts/controllers/groups/deviceAdd.js',
-                            'scripts/services/groups.js'
+                        files:['scripts/controllers/clusters/deviceAdd.js',
+                            'scripts/services/clusters.js'
                         ]
                     });
                 }
             }
         })
 
-        .state('groups.edit',{
-            templateUrl:'views/groups/deviceEdit.html',
+        .state('clusters.edit',{
+            templateUrl:'views/clusters/deviceEdit.html',
             url:'/edit',
             controller:'deviceEditCtrl',
             resolve:{
                 loadMyFile:function($ocLazyLoad){
                     return $ocLazyLoad.load({
                         name:'ciApp',
-                        files:['scripts/controllers/groups/deviceEdit.js',
-                            'scripts/services/groups.js'
+                        files:['scripts/controllers/clusters/deviceEdit.js',
+                            'scripts/services/clusters.js'
                         ]
                     });
                 }

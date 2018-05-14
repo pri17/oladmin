@@ -1,20 +1,24 @@
 'use strict';
 
-angular.module('ciApp').controller('deviceAddCtrl', ['$scope', '$mdToast', 'ServiceSetup', '$filter', '$stateParams', '$state',
+angular.module('ciApp').controller('deviceEditCtrl', ['$scope', '$mdToast', 'ServiceSetup', '$filter', '$stateParams', '$state',
     function($scope, $mdToast, ServiceSetup, $filter, $stateParams, $state){
 
-    $scope.dds_config = [];
-    $scope.d = {};
-    $scope.d_item = {"ip": "", "nickname": "", "version": ""};
-
+    $scope.ipcs_config = [];
+    $scope.ipc = {};
     $scope.reload = function () {
-        var promesa = ServiceSetup.getConfig('groups');
+        var promesa = ServiceSetup.getConfig('clusters');
+        //var promesa = ServiceCheckins.getBatchByIndex('studentno','*', 100, '');
+
         promesa.then(function(data)
             {
                 var text = '';
                 if(data.status == 'OK')
                 {
-                    $scope.dds_config = data.data;
+                    $scope.ipcs_config = data.data;
+                    var ipc = $scope.ipcs_config[$stateParams.id];
+                    if(angular.isArray(ipc.uri))
+                        ipc.uri = ipc.uri[0];
+                    $scope.ipc = ipc;
                 }
 
             }
@@ -26,18 +30,14 @@ angular.module('ciApp').controller('deviceAddCtrl', ['$scope', '$mdToast', 'Serv
     };
 
     $scope.reload();
+
     //toast
     var last = 'bottom left';
 
-    $scope.addAction = function() {
-        console.log("ipc add:" + angular.toJson($scope.d, true));
-        $scope.d_item.ip = $scope.d.ip;
-        $scope.d_item.nickname = $scope.d.nickname;
-        $scope.d_item.version = $scope.d.version;
 
-        $scope.dds_config.push($scope.d_item);
-
-        var promesa = ServiceSetup.setConfig('ipc', $scope.dds_config);
+    $scope.submitAction = function() {
+        console.log("ipc edit:" + angular.toJson($scope.ipc, true));
+        var promesa = ServiceSetup.setConfig('ipc', $scope.ipcs_config);
 
         promesa.then(function(data)
             {
@@ -45,7 +45,7 @@ angular.module('ciApp').controller('deviceAddCtrl', ['$scope', '$mdToast', 'Serv
                 if(data.status == 'OK')
                 {
                     text = 'Submit successfully!';
-                    $state.transitionTo('groups.manage');
+                    $state.transitionTo('ipc.manage');
                 }
                 else
                 {
@@ -68,6 +68,5 @@ angular.module('ciApp').controller('deviceAddCtrl', ['$scope', '$mdToast', 'Serv
 
 
     };
-
 }]);
 
