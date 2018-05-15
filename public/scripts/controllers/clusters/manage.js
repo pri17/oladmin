@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('ciApp').controller('clustersManageCtrl',['$scope','$filter','$state','$mdDialog', '$mdToast',
-    function($scope, $filter,$state, $mdDialog, $mdToast){
+angular.module('ciApp').controller('clustersManageCtrl',['$scope','$filter','$state','$mdDialog', '$mdToast', 'ServiceSetup',
+    function($scope, $filter,$state, $mdDialog, $mdToast, ServiceSetup){
 
         $scope.keyword = '';
 
@@ -13,91 +13,92 @@ angular.module('ciApp').controller('clustersManageCtrl',['$scope','$filter','$st
         $scope.orderByItem ='';
         $scope.reverse_flag = false;
 
-        $scope.dds = [
-                    {
-                        "ip": "192.168.1.169",
-                        "nickname": "设备2",
-                        "version": "8.8"
-                    },
-                    {
-                        "ip": "192.168.1.170",
-                        "nickname": "设备03",
-                        "version": "2.0"
-                    },
-                    {
-                        "ip": "192.168.1.172",
-                        "nickname": "设备05",
-                        "version": "1.1"
-                    },
-                    {
-                        "ip": "192.168.1.171",
-                        "nickname": "设备04",
-                        "enable": 1,
-                        "version": "1.1"
-                    },
-                    {
-                        "ip": "192.168.1.168",
-                        "nickname": "设备01",
-                        "version": "1.1.1"
-                    },
-                    {
-                        "ip": "192.168.1.64",
-                        "nickname": "",
-                        "version": "1.1.1"
-                    },
-                    {
-                        "ip": "192.168.1.11:8899",
-                        "nickname": "",
-                        "version": "1.0"
-                    },
-                    {
-                        "ip": "192.168.1.11",
-                        "nickname": "",
-                        "version": "3.3.3"
-                    },
-            {
-                "ip": "192.168.1.169",
-                "nickname": "设备2",
-                "version": "8.8"
-            },
-            {
-                "ip": "192.168.1.170",
-                "nickname": "设备03",
-                "version": "2.0"
-            },
-            {
-                "ip": "192.168.1.172",
-                "nickname": "设备05",
-                "version": "1.1"
-            },
-            {
-                "ip": "192.168.1.171",
-                "nickname": "设备04",
-                "enable": 1,
-                "version": "1.1"
-            },
-            {
-                "ip": "192.168.1.168",
-                "nickname": "设备01",
-                "version": "1.1.1"
-            },
-            {
-                "ip": "192.168.1.64",
-                "nickname": "",
-                "version": "1.1.1"
-            },
-            {
-                "ip": "192.168.1.11:8899",
-                "nickname": "",
-                "version": "1.0"
-            },
-            {
-                "ip": "192.168.1.11",
-                "nickname": "",
-                "version": "3.3.3"
-            }
-                ];
+        // $scope.dds = [
+        //             {
+        //         //                 "ip": "192.168.1.169",
+        //         //                 "nickname": "设备2",
+        //         //                 "version": "8.8"
+        //         //             },
+        //         //             {
+        //         //                 "ip": "192.168.1.170",
+        //         //                 "nickname": "设备03",
+        //         //                 "version": "2.0"
+        //         //             },
+        //         //             {
+        //         //                 "ip": "192.168.1.172",
+        //         //                 "nickname": "设备05",
+        //         //                 "version": "1.1"
+        //         //             },
+        //         //             {
+        //         //                 "ip": "192.168.1.171",
+        //         //                 "nickname": "设备04",
+        //         //                 "enable": 1,
+        //         //                 "version": "1.1"
+        //         //             },
+        //         //             {
+        //         //                 "ip": "192.168.1.168",
+        //         //                 "nickname": "设备01",
+        //         //                 "version": "1.1.1"
+        //         //             },
+        //         //             {
+        //         //                 "ip": "192.168.1.64",
+        //         //                 "nickname": "",
+        //         //                 "version": "1.1.1"
+        //         //             },
+        //         //             {
+        //         //                 "ip": "192.168.1.11:8899",
+        //         //                 "nickname": "",
+        //         //                 "version": "1.0"
+        //         //             },
+        //         //             {
+        //         //                 "ip": "192.168.1.11",
+        //         //                 "nickname": "",
+        //         //                 "version": "3.3.3"
+        //         //             },
+        //         //     {
+        //         //         "ip": "192.168.1.169",
+        //         //         "nickname": "设备2",
+        //         //         "version": "8.8"
+        //         //     },
+        //         //     {
+        //         //         "ip": "192.168.1.170",
+        //         //         "nickname": "设备03",
+        //         //         "version": "2.0"
+        //         //     },
+        //         //     {
+        //         //         "ip": "192.168.1.172",
+        //         //         "nickname": "设备05",
+        //         //         "version": "1.1"
+        //         //     },
+        //         //     {
+        //         //         "ip": "192.168.1.171",
+        //         //         "nickname": "设备04",
+        //         //         "enable": 1,
+        //         //         "version": "1.1"
+        //         //     },
+        //         //     {
+        //         //         "ip": "192.168.1.168",
+        //         //         "nickname": "设备01",
+        //         //         "version": "1.1.1"
+        //         //     },
+        //         //     {
+        //         //         "ip": "192.168.1.64",
+        //         //         "nickname": "",
+        //         //         "version": "1.1.1"
+        //         //     },
+        //         //     {
+        //         //         "ip": "192.168.1.11:8899",
+        //         //         "nickname": "",
+        //         //         "version": "1.0"
+        //         //     },
+        //         //     {
+        //         //         "ip": "192.168.1.11",
+        //         //         "nickname": "",
+        //         //         "version": "3.3.3"
+        //         //     }
+        //         ];
 
+        $scope.dds = [];
 
 
         $scope.$watchGroup(['itemsPerPage', 'dds'], function(newValue, oldValue){
@@ -107,6 +108,26 @@ angular.module('ciApp').controller('clustersManageCtrl',['$scope','$filter','$st
                 $scope.pageNumOptions.push(i+1);
         }, true);
 
+        $scope.reload = function () {
+            var promesa = ServiceSetup.getConfig('cluster');
+
+            promesa.then(function(data)
+                {
+                    var text = '';
+                    if(data.status == 'OK')
+                    {
+                        $scope.dds = data.data;
+                    }
+
+                }
+                ,function(error)
+                {
+                    alert("Error " + error);
+                });
+
+        }
+
+        $scope.reload();
 
         $scope.add = function(){
             $state.go('clusters.add');
@@ -115,72 +136,6 @@ angular.module('ciApp').controller('clustersManageCtrl',['$scope','$filter','$st
         $scope.edit = function(item){
             var idx = $scope.dds.indexOf(item);
             $state.transitionTo('clusters.edit', {'id': idx});
-        };
-
-        $scope.search = function(){
-            var promesa = 	ServiceIpc.search($scope.keyword);
-            promesa.then(function(data)
-                {
-                    var text = '';
-                    if(data.status == 'OK')
-                    {
-                        $scope.dds = data.data;
-                    }
-                    else
-                    {
-                        var pos = 'bottom left';
-                        $mdToast.show(
-                            $mdToast.simple()
-                                .textContent($filter('translate')('Search failed'))
-                                .position(pos)
-                                .hideDelay(2000)
-                        );
-                    }
-
-                }
-                ,function(error)
-                {
-                    alert("Error " + error);
-                });
-        };
-
-        $scope.del = function(dd, ev) {
-            console.log("device del:" + angular.toJson(dd, true));
-            var confirm = $mdDialog.confirm()
-                .title($filter('translate')('Would you like to delete the item?'))
-                .textContent(' ')
-                .ariaLabel('Lucky day')
-                .targetEvent(ev)
-                .ok($filter('translate')('OK'))
-                .cancel($filter('translate')('no'));
-            $mdDialog.show(confirm).then(function() {
-                var idx = $scope.dds.indexOf(ipc);
-                $scope.dds.splice(idx, 1);
-
-                $scope.save();
-
-            }, function() {
-                console.log("You cancel the deletion operation!");
-            });
-
-        };
-
-        $scope.delAll = function(dd, ev) {
-            console.log("device delAll:" + angular.toJson(dd, true));
-            var confirm = $mdDialog.confirm()
-                .title($filter('translate')('Would you like to delete all the item?'))
-                .textContent(' ')
-                .ariaLabel('Lucky day')
-                .targetEvent(ev)
-                .ok($filter('translate')('OK'))
-                .cancel($filter('translate')('No!'));
-            $mdDialog.show(confirm).then(function() {
-                $scope.dds = [];
-                $scope.save();
-            }, function() {
-                console.log("You cancel the deletion operation!");
-            });
-
         };
 
         $scope.save = function() {
@@ -219,6 +174,75 @@ angular.module('ciApp').controller('clustersManageCtrl',['$scope','$filter','$st
         $scope.nextPage = function (){
             $scope.currentPage ++;
         }
+
+        $scope.del = function(dd, ev) {
+            console.log("dd del:" + angular.toJson(dd, true));
+            var confirm = $mdDialog.confirm()
+                .title($filter('translate')('Would you like to delete the item?'))
+                .textContent(' ')
+                .ariaLabel('Lucky day')
+                .targetEvent(ev)
+                .ok($filter('translate')('OK'))
+                .cancel($filter('translate')('No!'));
+            $mdDialog.show(confirm).then(function() {
+                var idx = $scope.dds.indexOf(dd);
+                $scope.dds.splice(idx, 1);
+
+                $scope.save();
+
+            }, function() {
+                console.log("You cancel the deletion operation!");
+            });
+
+        };
+
+        $scope.delAll = function(dd, ev) {
+            console.log("ipc delAll:" + angular.toJson(ipc, true));
+            var confirm = $mdDialog.confirm()
+                .title($filter('translate')('Would you like to delete all the item?'))
+                .textContent(' ')
+                .ariaLabel('Lucky day')
+                .targetEvent(ev)
+                .ok($filter('translate')('OK'))
+                .cancel($filter('translate')('No!'));
+            $mdDialog.show(confirm).then(function() {
+                $scope.dds = [];
+                $scope.save();
+            }, function() {
+                console.log("You cancel the deletion operation!");
+            });
+
+        };
+
+        $scope.save = function() {
+            var promesa = ServiceSetup.setConfig('cluster', $scope.dds);
+
+            promesa.then(function(data)
+                {
+                    var text = '';
+                    if(data.status == 'OK')
+                    {
+                        text = 'Save successfully!';
+                    }
+                    else
+                    {
+                        text = 'Failed';
+                        $mdToast.show(
+                            $mdToast.simple()
+                                .textContent($filter('translate')(text))
+                                .position(last)
+                                .hideDelay
+                        );
+                    }
+
+
+                    console.log(text);
+                }
+                ,function(error)
+                {
+                    alert("Error " + error);
+                });
+        };
 
 }]);
 

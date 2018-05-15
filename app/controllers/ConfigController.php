@@ -70,6 +70,7 @@ class ConfigController extends ApiControllerBase
 		{
 			$this->log(__FUNCTION__." setAction: failed");
 			$res['status'] = 'ERROR';
+			$res['data'] =$data;
 		}
 		else
 		{

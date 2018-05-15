@@ -35,13 +35,16 @@ class ConfigBase
 	{
 		if($this->validate($data) == false)
 		{
-			return false;
+            $this->log(__FUNCTION__."Set config validate failed \n");
+            return false;
 		}
 		
 		$data = $this->combineDefault($data);
 		
-		if($data == false)
-			return false;
+		if($data == false) {
+            $this->log(__FUNCTION__."Set config combine failed \n");
+            return false;
+        }
 		
 		$pathname = self::CONFIGS_PATH;
 		$pathname = __DIR__ . $pathname . $name;

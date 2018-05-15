@@ -6,7 +6,7 @@ angular.module('ciApp').controller('deviceEditCtrl', ['$scope', '$mdToast', 'Ser
     $scope.ipcs_config = [];
     $scope.ipc = {};
     $scope.reload = function () {
-        var promesa = ServiceSetup.getConfig('clusters');
+        var promesa = ServiceSetup.getConfig('cluster');
         //var promesa = ServiceCheckins.getBatchByIndex('studentno','*', 100, '');
 
         promesa.then(function(data)
