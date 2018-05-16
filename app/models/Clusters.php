@@ -12,10 +12,8 @@ class Clusters extends ConfigBase
                 0 =>
                     array (
                         'ip' => '/^.+$/',
-                        'uri' => '/^.+$/',
                         'nickname' => '/^.+$/',
-                        'class' => '/^.+$/',
-                        'enable' => 1,
+                        'version' => '/^.+$/',
                     ),
             ),
     );
@@ -29,10 +27,8 @@ class Clusters extends ConfigBase
                 0 =>
                     array (
                         'ip' => '',
-                        'uri' => '',
                         'nickname' => '',
-                        'class' => '',
-                        'enable' => 1,
+                        'version' => '',
                     ),
             ),
     );
