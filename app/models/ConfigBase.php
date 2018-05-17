@@ -52,7 +52,7 @@ class ConfigBase
 		$result = file_put_contents($pathname, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 		if($result ===false)
 		{
-			$this->log(__FUNCTION__."Set config: ". $pathname ." failed \n");
+			$this->log(__FUNCTION__."\nSet config: ". $pathname ." failed \n");
 			return false;
 		}
 	

@@ -769,7 +769,7 @@ app.config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function
 
         .state('clusters.edit',{
             templateUrl:'views/clusters/deviceEdit.html',
-            url:'/edit',
+            url:'/edit/:id',
             controller:'deviceEditCtrl',
             resolve:{
                 loadMyFile:function($ocLazyLoad){

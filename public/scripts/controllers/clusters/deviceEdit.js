@@ -3,22 +3,23 @@
 angular.module('ciApp').controller('deviceEditCtrl', ['$scope', '$mdToast', 'ServiceSetup', '$filter', '$stateParams', '$state',
     function($scope, $mdToast, ServiceSetup, $filter, $stateParams, $state){
 
-    $scope.ipcs_config = [];
-    $scope.ipc = {};
+    $scope.dds_config = [];
+    $scope.device = {};
     $scope.reload = function () {
         var promesa = ServiceSetup.getConfig('cluster');
-        //var promesa = ServiceCheckins.getBatchByIndex('studentno','*', 100, '');
 
         promesa.then(function(data)
             {
                 var text = '';
                 if(data.status == 'OK')
                 {
-                    $scope.ipcs_config = data.data;
-                    var ipc = $scope.ipcs_config[$stateParams.id];
-                    if(angular.isArray(ipc.uri))
-                        ipc.uri = ipc.uri[0];
-                    $scope.ipc = ipc;
+                    $scope.dds_config = data.data;
+                    var d = $scope.dds_config[$stateParams.id];
+                    $scope.device = d;
+                    // console.log("data:"+angular.toJson(data.data, true));
+                    console.log("d:"+angular.toJson(d, true));
+                    console.log("id:"+$stateParams.id);
+
                 }
 
             }
@@ -36,8 +37,8 @@ angular.module('ciApp').controller('deviceEditCtrl', ['$scope', '$mdToast', 'Ser
 
 
     $scope.submitAction = function() {
-        console.log("ipc edit:" + angular.toJson($scope.ipc, true));
-        var promesa = ServiceSetup.setConfig('ipc', $scope.ipcs_config);
+        console.log("device edit:" + angular.toJson($scope.device, true));
+        var promesa = ServiceSetup.setConfig('cluster', $scope.dds_config);
 
         promesa.then(function(data)
             {
@@ -45,7 +46,7 @@ angular.module('ciApp').controller('deviceEditCtrl', ['$scope', '$mdToast', 'Ser
                 if(data.status == 'OK')
                 {
                     text = 'Submit successfully!';
-                    $state.transitionTo('ipc.manage');
+                    $state.transitionTo('clusters.manage');
                 }
                 else
                 {

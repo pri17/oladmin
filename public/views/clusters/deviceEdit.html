@@ -2,7 +2,7 @@
 <div>
     <md-toolbar class="toolbarfix">
         <div class="md-toolbar-tools">
-            <a ui-sref="groups.manage">
+            <a ui-sref="clusters.manage">
                 <md-button aria-label="Go Back">
                     <md-icon md-svg-icon="img/icons/ic_arrow_back_24px.svg"></md-icon>
                 </md-button>
@@ -22,21 +22,23 @@
     <div class="toolbarheight"></div>
 
     <md-content layout-padding layout="row" layout-align="center center">
-        <form name="ipcForm" flex=80>
+        <form name="deviceForm" flex=80>
+
+            <md-input-container class="md-block">
+                <label>{{'deviceIp' | translate}}</label>
+                <input required name="dd_ip" ng-model="device.ip"
+                >
+            </md-input-container>
 
             <md-input-container class="md-block">
                 <label>{{'deviceName' | translate}}</label>
-                <input required name="d_name" ng-model="d.nickname"
+                <input required name="dd_name" ng-model="device.nickname"
                 >
             </md-input-container>
-            <md-input-container class="md-block">
-                <label>{{'deviceIp' | translate}}</label>
-                <input required name="d_ip" ng-model="d.ip"
-                >
-            </md-input-container>
+
             <md-input-container class="md-block">
                 <label>{{'deviceVersion' | translate}}</label>
-                <input name="d_version" ng-model="d.version"
+                <input name="dd_version" ng-model="device.version"
                 >
             </md-input-container>
 
@@ -44,7 +46,7 @@
                 <md-button ng-click="submitAction()" class="md-raised md-primary">
                     {{'Submit' | translate}}
                 </md-button>
-                <a ui-sref="ipc.manage">
+                <a ui-sref="clusters.manage">
                     <md-button class=" md-primary">
                         {{'Return' | translate}}
                     </md-button>

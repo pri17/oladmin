@@ -135,11 +135,13 @@ angular.module('ciApp').controller('clustersManageCtrl',['$scope','$filter','$st
 
         $scope.edit = function(item){
             var idx = $scope.dds.indexOf(item);
+            // console.log("dds:"+ angular.toJson($scope.dds, true));
+            console.log("idx:"+ idx);
             $state.transitionTo('clusters.edit', {'id': idx});
         };
 
         $scope.save = function() {
-            var promesa = ServiceSetup.setConfig('dd', $scope.dds);
+            var promesa = ServiceSetup.setConfig('cluster', $scope.dds);
 
             promesa.then(function(data)
                 {
@@ -175,8 +177,8 @@ angular.module('ciApp').controller('clustersManageCtrl',['$scope','$filter','$st
             $scope.currentPage ++;
         }
 
-        $scope.del = function(dd, ev) {
-            console.log("dd del:" + angular.toJson(dd, true));
+        $scope.del = function(device, ev) {
+            console.log("device del:" + angular.toJson(device, true));
             var confirm = $mdDialog.confirm()
                 .title($filter('translate')('Would you like to delete the item?'))
                 .textContent(' ')
@@ -185,7 +187,7 @@ angular.module('ciApp').controller('clustersManageCtrl',['$scope','$filter','$st
                 .ok($filter('translate')('OK'))
                 .cancel($filter('translate')('No!'));
             $mdDialog.show(confirm).then(function() {
-                var idx = $scope.dds.indexOf(dd);
+                var idx = $scope.dds.indexOf(device);
                 $scope.dds.splice(idx, 1);
 
                 $scope.save();

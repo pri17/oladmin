@@ -46,8 +46,8 @@ class Clusters extends ConfigBase
     public function setConfig($name, $data)
     {
         $content = $this->schema_default;
-//        $content['data'] = $data;
-//        $content['timestamp'] = time();
+        $content['data'] = $data;
+        $content['timestamp'] = time();
         return parent::setConfig($name, $content);
     }
 
